@@ -1,9 +1,29 @@
-import React from 'react'
+import React, {useState} from 'react';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
 
-    const onChange = () => {
+    //State para iniciar sesion
+    const [usuario, guardarUsuario] = useState({
+        admin: '',
+        password: ''
+    });
 
+    const {admin, password} = usuario; 
+
+    const onChange = e => {
+        guardarUsuario({
+            ...usuario,
+            [e.target.name] : e.target.value
+        })
+    }
+
+    const onSubmit = e => {
+        e.preventDefault();
+
+        //Validar que no haya campos vacios
+
+        //Pasarlo al action
     }
 
     return ( 
@@ -11,7 +31,9 @@ const Login = () => {
             <div className="contenedor-form card">
                 <img className="card-image" src="logo-consult.png" alt="Logo"/>
 
-                <form>
+                <form
+                    onSubmit={onSubmit}
+                >
                     <div className="campo-form">
                         <label htmlFor="admin">Usuario Administrador</label>
                         <input
@@ -21,6 +43,7 @@ const Login = () => {
                             name="admin"
                             placeholder="Tu usuario administrador"
                             onChange={onChange}
+                            value={admin}
                         />
                     </div>
                     <div className="campo-form">
@@ -32,6 +55,7 @@ const Login = () => {
                             name="password"
                             placeholder="Tu contraseña"
                             onChange={onChange}
+                            value={password}
                         />
                     </div>
 
@@ -39,6 +63,7 @@ const Login = () => {
                         <input type="submit" className="btn btn-primary btn-block" value="Iniciar sesion" />
                     </div>
                 </form>
+                <Link to={'/registro'} className="enlace-cuenta">Solo usuarios administradores</Link>
             </div>
         </div>
      );
