@@ -13,13 +13,13 @@ const Login = () => {
 
                 <form>
                     <div className="campo-form">
-                        <label htmlFor="admin">Administrador</label>
+                        <label htmlFor="admin">Usuario Administrador</label>
                         <input
                             className="form-control"
                             type="text"
                             id="admin"
                             name="admin"
-                            placeholder="Nombre del usuario administrador"
+                            placeholder="Tu usuario administrador"
                             onChange={onChange}
                         />
                     </div>
