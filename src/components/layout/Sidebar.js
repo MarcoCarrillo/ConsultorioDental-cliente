@@ -1,5 +1,6 @@
 import React from 'react';
 import NuevoCliente from '../panelClientes/NuevoCliente';
+import ListadoClientes from '../panelClientes/ListadoClientes';
 
 const Sidebar = () => {
     return ( 
@@ -10,7 +11,8 @@ const Sidebar = () => {
             <NuevoCliente />
             
             <div className="clientes">
-                <h2 className="titulo-clientes">Clientes</h2>
+                <h2 className="titulo-clientes">Pacientes</h2>
+                <ListadoClientes />
             </div>
         </aside>
      );

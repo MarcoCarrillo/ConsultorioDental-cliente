@@ -135,10 +135,9 @@ aside {
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   color:#1A4374;
+  margin-bottom: 10px;
 }
-.listado-clientes li {
-  margin-bottom: 2rem;
-}
+
 .listado-clientes li a {
   font-size: 1.4rem;
   color: grey;
@@ -162,4 +161,32 @@ aside {
 
 .boton-nuevo-cliente {
   margin-top: 2rem;
+}
+
+.btn-blank {
+  margin: 0;
+  padding: 0;
+  display: block;
+  background-color: transparent;
+}
+
+.boton {
+  font-family: 'Raleway',sans-serif;
+  padding: .5rem;
+  font-size: 1.4;
+  font-weight: 400;
+  border-radius: .5rem;
+  border: none;
+  transition: background-color .3s ease;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.btn-azul{
+  color: #fff;
+  background-color: #004E92;
+  border-color: #004E92;
 }
