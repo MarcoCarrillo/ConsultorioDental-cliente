@@ -18,6 +18,14 @@ label{
   margin-right: 20px;
 }
 
+h1, h2 {
+  font-family: 'Segoe UI';
+  font-weight: 300;
+  margin: 2rem 0 4rem 0;
+  text-align: center;
+  color: grey;
+}
+
 .back-color {
   background: #000428;  
   background: -webkit-linear-gradient(to right, #004e92, #000428);  
@@ -68,3 +76,90 @@ display: block;
 opacity: .7;
 }
 
+aside {
+  background-color: #FFFFFF;
+  flex: 0 0 300px;
+}
+.seccion-principal {
+  flex: 1;
+}
+
+@media (min-width: 768px) {
+  .contenedor-app {
+      display: flex;
+      min-height: 100vh;
+  }
+
+  aside {
+      background-color: #FFFFFF;
+      flex: 0 0 300px;
+  }
+  .seccion-principal {
+      flex: 1;
+  }
+
+  .titulo-sidebar{
+    font-family: 'Roboto', sans-serif;
+    font-weight:300;
+    margin: 3rem 1rem 0rem 1rem;
+    font-size: 3rem;  
+    align-items: center;
+  }
+
+}
+
+.sidebar{
+  padding: 2rem 1rem 0rem 1rem;
+  border-right: 1px solid rgb(208, 208, 208);
+}
+
+.titulo-sidebar {
+  margin: 2rem 1rem 0rem 1rem;
+  font-size: 2rem;
+  color:black;
+}
+
+.img-sidebar {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  width: 90%;
+  margin-left: 0;
+}
+
+.clientes {
+  margin-top: 2rem;
+  text-align: left;
+}
+.titulo-clientes {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color:#1A4374;
+}
+.listado-clientes li {
+  margin-bottom: 2rem;
+}
+.listado-clientes li a {
+  font-size: 1.4rem;
+  color: grey;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+.form-nuevo-cliente {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.form-nuevo-cliente .input-cliente {
+  border-bottom: 1px solid grey;
+  border-radius: 0;
+  background-color: rgb(208, 208, 208);
+  width:100%;
+}
+.form-nuevo-cliente .input-cliente::placeholder{
+  color: grey;
+}
+
+.boton-nuevo-cliente {
+  margin-top: 2rem;
+}
