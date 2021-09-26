@@ -218,3 +218,28 @@ ul {
 .nav-principal a:first-of-type {
   margin-right: 2rem;
 }
+
+.icon{
+  color:grey;
+  font-size: 3.5rem;
+  margin-left: 2rem;
+}
+
+.alinear{
+  display: flex;
+  align-items: center;
+}
+
+.row{
+  display: flex;
+    flex-wrap: nowrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.info-cliente{
+  padding: 2.5rem .5rem .5rem 0rem;
+}
+
+.bg-cliente{
+  background-color: #EDF2F6;
+}
