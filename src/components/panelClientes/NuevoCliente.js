@@ -58,7 +58,7 @@ const NuevoCliente = () => {
                 </div>
                 <div className="input-goup mb-3">
                     <input 
-                        type="number" 
+                        type="number"
                         id="edad"
                         className="form-control" 
                         placeholder="Edad del paciente" 

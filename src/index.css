@@ -101,7 +101,7 @@ aside {
   .titulo-sidebar{
     font-family: 'Roboto', sans-serif;
     font-weight:300;
-    margin: 3rem 1rem 0rem 1rem;
+    margin: 1rem 1rem 0rem 1rem;
     font-size: 3rem;  
     align-items: center;
   }
@@ -133,9 +133,10 @@ aside {
 }
 .titulo-clientes {
   font-family: 'Roboto', sans-serif;
-  font-weight: 500;
+  font-weight: 600;
   color:#1A4374;
   margin-bottom: 10px;
+  font-size: 1.5rem;
 }
 
 .listado-clientes li a {
@@ -189,4 +190,31 @@ ul {
   color: #fff;
   background-color: #004E92;
   border-color: #004E92;
+}
+.btn-azul:hover{
+  background-color: #fff;
+  color: #004e92;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #004E92;
+  padding: 2rem;
+}
+.nombre-usuario {
+  color:#fff;
+  font-size: 1.2rem;
+  margin: 0;
+}
+.nombre-usuario span {
+  font-weight: 900;
+}
+.nav-principal a {
+  color: #fff;
+  text-decoration: none;
+}
+.nav-principal a:first-of-type {
+  margin-right: 2rem;
 }
