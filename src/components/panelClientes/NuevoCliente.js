@@ -44,6 +44,7 @@ const NuevoCliente = () => {
 
             <form
                 className="form-nuevo-cliente mb-2"
+                onSubmit={onSubmit}
             >
                 <div className="input-goup mb-3">
                     <input 
@@ -91,7 +92,7 @@ const NuevoCliente = () => {
                 </div>
                 
                 
-                <input type="submit" className="btn btn-azul" value="Agregar Paciente" onSubmit={onSubmit}/>
+                <input type="submit" className="btn btn-azul" value="Agregar Paciente" />
             </form>
         </Fragment>
         
