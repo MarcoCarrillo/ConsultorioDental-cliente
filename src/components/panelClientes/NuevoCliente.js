@@ -27,7 +27,14 @@ const NuevoCliente = () => {
         e.preventDefault();
 
         //Validar el cliente
+        if(nombre.trim() ==='' || tratamiento.trim()==='' || edad.trim()==='' || tratamiento.trim() === '') {
+            console.log('Campos incompletos');
+            return;
+        }
 
+        if(parseInt(edad, 10) < 1){
+            console.log('Edad invalida');
+        }
         //en caso de que este correcto agregar al State
 
         //Reiniciar el form
