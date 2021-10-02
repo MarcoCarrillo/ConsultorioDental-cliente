@@ -5,11 +5,12 @@ const FormPago = () => {
     //State
     const [pago, guardarPago] = useState({
         concepto: '',
-        cantidad: ''
+        cantidad: 0,
+        fecha: ''
     })
 
     //Extraer valores
-    const {concepto, cantidad} = pago;
+    const {concepto, cantidad, fecha} = pago;
 
     //Leer inputs
     const onChange = e => {
@@ -39,7 +40,11 @@ const FormPago = () => {
                     <label for="cantidad-pago" class="form-label">Cantidad</label>
                     <input type="number" class="form-control" id="cantidad-pago" placeholder='$1000' name='cantidad' value={cantidad} onChange={onChange}/>
                 </div>
-                <input type='submit' className="btn btn-azul mb-4" value='Agregar pago' />
+                <div class="mb-3">
+                    <label for="fecha-pago" class="form-label">Cantidad</label>
+                    <input type="date" class="form-control" id="fecha-pago" name='fecha' value={fecha} onChange={onChange}/>
+                </div>
+                <input type='submit' className="btn btn-success mb-4" value='Agregar pago' />
             </form>
         </div>
      );

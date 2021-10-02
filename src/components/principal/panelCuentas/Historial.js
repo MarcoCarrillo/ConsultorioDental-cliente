@@ -8,7 +8,7 @@ const Historial = () => {
             <h2 className='mb-4'>Historial</h2>
             <h3>Cargos</h3>
             <ListadoCargos /> 
-            <h3>Pagos</h3>
+            <h3 className='mt-4'>Pagos</h3>
             <ListadoPagos /> 
         </Fragment>
         

@@ -5,11 +5,12 @@ const FormCargo = () => {
     //State del formulario de cargo
     const [cargo, guardarCargo] = useState({
         concepto: '',
-        cantidad: ''
+        cantidad: 0,
+        fecha: ''
     });
 
     //Destructuring
-    const {concepto, cantidad} = cargo;
+    const {concepto, cantidad, fecha} = cargo;
 
     //Lee los contenidos del input
     const onChange = e => {
@@ -38,6 +39,10 @@ const FormCargo = () => {
                 <div class="mb-3">
                     <label for="cantidad-cargo" class="form-label">Cantidad</label>
                     <input type="number" class="form-control" id="cantidad-cargo" placeholder="$500" onChange={onChange} value={cantidad} name="cantidad"/>
+                </div>
+                <div class="mb-3">
+                    <label for="fecha-cargo" class="form-label">Fecha</label>
+                    <input type="date" class="form-control" id="fecha-cargo" onChange={onChange} value={fecha} name="fecha"/>
                 </div>
                 <input type='submit' className="btn btn-azul mb-4" value='Agregar cargo' />
             </form>

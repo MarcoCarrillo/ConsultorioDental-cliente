@@ -4,8 +4,10 @@ import Cargo from './Cargo';
 const ListadoCargos = () => {
 
     const cargos = [
-        {concepto: 'Pago inicial', cantidad: '500'},
-        {concepto: 'Tratamiento dental', cantidad: '5000'}
+        {concepto: 'Anticipo', cantidad: 5500, fecha:'2021-10-19'},
+        {concepto: 'Tratamiento dental', cantidad: 3000, fecha:'2021-10-20'},
+        {concepto: 'Nueva muela', cantidad: 4000, fecha:'2021-10-29'},
+        
     ]
 
     return ( 
