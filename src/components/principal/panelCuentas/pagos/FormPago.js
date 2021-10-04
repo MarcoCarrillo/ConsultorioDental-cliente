@@ -44,8 +44,14 @@ const FormPago = () => {
                     <label for="fecha-pago" class="form-label">Cantidad</label>
                     <input type="date" class="form-control" id="fecha-pago" name='fecha' value={fecha} onChange={onChange}/>
                 </div>
-                <input type='submit' className="btn btn-success mb-4" value='Agregar pago' />
+                <input type='submit' className="btn btn-success mb-5" value='Agregar pago' />
             </form>
+            <div className="row">
+                <button
+                type="button"
+                className="btn btn-danger m-auto mt-3"
+                >Eliminar Paciente &times;</button>
+            </div>
         </div>
      );
 }
