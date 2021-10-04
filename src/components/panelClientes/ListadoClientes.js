@@ -1,20 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Cliente from './Cliente';
+
+import clienteContext from '../../context/clientes/clienteContext';
 
 const ListadoClientes = () => {
 
-    const clientes = [
-        {nombre: 'Memo Ochoa', edad: '30', telefono: '6181762612', tratamiento: 'Muelas picadas'},
-        {nombre: 'Leo Messi', edad: '50', telefono: '6181762611', tratamiento: 'Brackets'},
-        {nombre: 'Neymar', edad: '20', telefono: '6181762613', tratamiento: 'Muelas del juicio'},
-        {nombre: 'Pelé', edad: '80', telefono: '6181762614', tratamiento: 'Extraccion'}
-    ];
+    //Obtener el state del formulario
+    const clientesContext = useContext(clienteContext);
+    const { clientes } = clientesContext;
 
+    if(clientes.length === 0) return null;
 
     return ( 
         <ul className="listado-clientes">
             {clientes.map(cliente => (
                 <Cliente 
+                    key={cliente.id}
                     cliente={cliente}
                 />
             ))}

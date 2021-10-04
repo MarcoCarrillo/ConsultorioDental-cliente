@@ -10,6 +10,13 @@ import {
 
 const ClienteState = props => {
     const initialState = {
+        clientes : [
+            {id:1, nombre: 'Memo Ochoa', edad: '30', telefono: '6181762612', tratamiento: 'Muelas picadas'},
+            {id:2, nombre: 'Leo Messi', edad: '50', telefono: '6181762611', tratamiento: 'Brackets'},
+            {id:3, nombre: 'Neymar', edad: '20', telefono: '6181762613', tratamiento: 'Muelas del juicio'},
+            {id:4, nombre: 'Pelé', edad: '80', telefono: '6181762614', tratamiento: 'Extraccion'},
+            {id:5, nombre: 'Hugo Sanchezz', edad: '80', telefono: '727829278', tratamiento: 'Modesto'}
+        ],
         formulario: false
     }
 
@@ -33,6 +40,7 @@ const ClienteState = props => {
         <clienteContext.Provider
             value={{
                 formulario: state.formulario,
+                clientes: state.clientes,
                 mostrarFormulario,
                 ocultarFormulario
             }}
