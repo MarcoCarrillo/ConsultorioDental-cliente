@@ -1,6 +1,13 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useState, useContext} from 'react';
+
+import clienteContext from '../../context/clientes/clienteContext';
 
 const NuevoCliente = () => {
+
+    //Obtener el state del formulario
+    const clientesContext = useContext(clienteContext);
+    const { formulario, mostrarFormulario, ocultarFormulario } = clientesContext;
+
 
     //State para cliente
     const [cliente, guardarCliente] = useState({
@@ -40,6 +47,13 @@ const NuevoCliente = () => {
         //Reiniciar el form
     }
 
+    const onClickForm = () =>{
+        if(formulario === false){
+            mostrarFormulario();
+        }else{
+            ocultarFormulario();
+        }
+    }
 
 
     return ( 
@@ -47,60 +61,66 @@ const NuevoCliente = () => {
             <button
                 type="button"
                 className="btn btn-block btn-azul"
+                onClick={onClickForm}
             >Nuevo Paciente</button> 
 
-            <form
-                className="form-nuevo-cliente mb-2"
-                onSubmit={onSubmit}
-            >
-                <div className="input-goup mb-3">
-                    <input 
-                        type="text" 
-                        id="nombre"
-                        className="form-control" 
-                        placeholder="Nombre del paciente" 
-                        name='nombre'
-                        onChange={onChange}
-                        value={nombre}
-                    />
-                </div>
-                <div className="input-goup mb-3">
-                    <input 
-                        type="number"
-                        id="edad"
-                        className="form-control" 
-                        placeholder="Edad del paciente" 
-                        name='edad'
-                        onChange={onChange}
-                        value={edad}
-                    />
-                </div>
-                <div className="input-goup mb-3">
-                    <input 
-                        type="number" 
-                        id="telefono"
-                        className="form-control" 
-                        placeholder="Telefono del paciente" 
-                        name='telefono'
-                        onChange={onChange}
-                        value={telefono}
-                    />
-                </div>
-                <div className="input-goup mb-3">
-                    <input 
-                        type="text" 
-                        id="tratamiento"
-                        className="form-control" 
-                        placeholder="Tratamiento" 
-                        name='tratamiento'
-                        onChange={onChange}
-                        value={tratamiento}
-                    />
-                </div>
-                
-                
-                <input type="submit" className="btn btn-azul" value="Agregar Paciente" />
-            </form>
+            {formulario ?
+                    (
+                        <form
+                            className="form-nuevo-cliente mb-2"
+                            onSubmit={onSubmit}
+                        >
+                            <div className="input-goup mb-3">
+                                <input 
+                                    type="text" 
+                                    id="nombre"
+                                    className="form-control" 
+                                    placeholder="Nombre del paciente" 
+                                    name='nombre'
+                                    onChange={onChange}
+                                    value={nombre}
+                                />
+                            </div>
+                            <div className="input-goup mb-3">
+                                <input 
+                                    type="number"
+                                    id="edad"
+                                    className="form-control" 
+                                    placeholder="Edad del paciente" 
+                                    name='edad'
+                                    onChange={onChange}
+                                    value={edad}
+                                />
+                            </div>
+                            <div className="input-goup mb-3">
+                                <input 
+                                    type="number" 
+                                    id="telefono"
+                                    className="form-control" 
+                                    placeholder="Telefono del paciente" 
+                                    name='telefono'
+                                    onChange={onChange}
+                                    value={telefono}
+                                />
+                            </div>
+                            <div className="input-goup mb-3">
+                                <input 
+                                    type="text" 
+                                    id="tratamiento"
+                                    className="form-control" 
+                                    placeholder="Tratamiento" 
+                                    name='tratamiento'
+                                    onChange={onChange}
+                                    value={tratamiento}
+                                />
+                            </div>
+                            
+                            
+                            <input type="submit" className="btn btn-azul" value="Agregar Paciente" />
+                        </form>
+                    )
+                : null
+            }
         </Fragment>
         
      );
