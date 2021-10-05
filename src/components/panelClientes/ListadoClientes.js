@@ -1,15 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Cliente from './Cliente';
 
 import clienteContext from '../../context/clientes/clienteContext';
 
 const ListadoClientes = () => {
 
-    //Obtener el state del formulario
+    //Obtener clientes del state inicial
     const clientesContext = useContext(clienteContext);
-    const { clientes } = clientesContext;
+    const { clientes, obtenerClientes } = clientesContext;
+    
+    //Obtener clientes cuando tarda el componente
+    useEffect(() => {
+        obtenerClientes();        
+    }, []);
 
     if(clientes.length === 0) return null;
+
+    
 
     return ( 
         <ul className="listado-clientes">

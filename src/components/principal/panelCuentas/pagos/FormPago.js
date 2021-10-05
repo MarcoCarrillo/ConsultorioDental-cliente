@@ -32,17 +32,17 @@ const FormPago = () => {
                 className='ml-4'
                 onSubmit={onSubmit}
             >
-                <div class="mb-3">
-                    <label for="concepto-pago" class="form-label">Concepto de pago</label>
-                    <input type="text" class="form-control" id="concepto-pago" placeholder='Ej. Primer mensualidad' name='concepto' value={concepto} onChange={onChange}/>
+                <div className="mb-3">
+                    <label htmlFor="concepto-pago" className="form-label">Concepto de pago</label>
+                    <input type="text" className="form-control" id="concepto-pago" placeholder='Ej. Primer mensualidad' name='concepto' value={concepto} onChange={onChange}/>
                 </div>
-                <div class="mb-3">
-                    <label for="cantidad-pago" class="form-label">Cantidad</label>
-                    <input type="number" class="form-control" id="cantidad-pago" placeholder='$1000' name='cantidad' value={cantidad} onChange={onChange}/>
+                <div className="mb-3">
+                    <label htmlFor="cantidad-pago" className="form-label">Cantidad</label>
+                    <input type="number" className="form-control" id="cantidad-pago" placeholder='$1000' name='cantidad' value={cantidad} onChange={onChange}/>
                 </div>
-                <div class="mb-3">
-                    <label for="fecha-pago" class="form-label">Cantidad</label>
-                    <input type="date" class="form-control" id="fecha-pago" name='fecha' value={fecha} onChange={onChange}/>
+                <div className="mb-3">
+                    <label htmlFor="fecha-pago" className="form-label">Cantidad</label>
+                    <input type="date" className="form-control" id="fecha-pago" name='fecha' value={fecha} onChange={onChange}/>
                 </div>
                 <input type='submit' className="btn btn-success mb-5" value='Agregar pago' />
             </form>

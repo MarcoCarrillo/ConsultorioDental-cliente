@@ -1,6 +1,7 @@
 import { 
     MOSTRAR_FORMULARIO_CLIENTE,
-    OCULTAR_FORMULARIO_CLIENTE
+    OCULTAR_FORMULARIO_CLIENTE,
+    OBTENER_CLIENTES
 } from '../../types';
 
 export default (state, action) => {
@@ -15,6 +16,11 @@ export default (state, action) => {
             return{
                 ...state,
                 formulario: false
+            }
+        case OBTENER_CLIENTES:
+            return{
+                ...state,
+                clientes: action.payload
             }
 
         default: 

@@ -32,17 +32,17 @@ const FormCargo = () => {
                 className="ml-4"
                 onSubmit={onSubmit}
             >
-                <div class="mb-3">
-                    <label for="concepto-cargo" class="form-label">Concepto de cargo</label>
-                    <input type="text" class="form-control" id="concepto-cargo" placeholder="Ej. Diente nuevo" onChange={onChange} value={concepto} name='concepto' />
+                <div className="mb-3">
+                    <label htmlFor="concepto-cargo" className="form-label">Concepto de cargo</label>
+                    <input type="text" className="form-control" id="concepto-cargo" placeholder="Ej. Diente nuevo" onChange={onChange} value={concepto} name='concepto' />
                 </div>
-                <div class="mb-3">
-                    <label for="cantidad-cargo" class="form-label">Cantidad</label>
-                    <input type="number" class="form-control" id="cantidad-cargo" placeholder="$500" onChange={onChange} value={cantidad} name="cantidad"/>
+                <div className="mb-3">
+                    <label htmlFor="cantidad-cargo" className="form-label">Cantidad</label>
+                    <input type="number" className="form-control" id="cantidad-cargo" placeholder="$500" onChange={onChange} value={cantidad} name="cantidad"/>
                 </div>
-                <div class="mb-3">
-                    <label for="fecha-cargo" class="form-label">Fecha</label>
-                    <input type="date" class="form-control" id="fecha-cargo" onChange={onChange} value={fecha} name="fecha"/>
+                <div className="mb-3">
+                    <label htmlFor="fecha-cargo" className="form-label">Fecha</label>
+                    <input type="date" className="form-control" id="fecha-cargo" onChange={onChange} value={fecha} name="fecha"/>
                 </div>
                 <input type='submit' className="btn btn-azul mb-4" value='Agregar cargo' />
             </form>

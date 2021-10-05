@@ -5,18 +5,22 @@ import clienteReducer from './clienteReducer';
 
 import { 
     MOSTRAR_FORMULARIO_CLIENTE,
-    OCULTAR_FORMULARIO_CLIENTE
+    OCULTAR_FORMULARIO_CLIENTE,
+    OBTENER_CLIENTES
 } from '../../types';
 
 const ClienteState = props => {
+
+    const clientes = [
+        {id:1, nombre: 'Memo Ochoa', edad: '30', telefono: '6181762612', tratamiento: 'Muelas picadas'},
+        {id:2, nombre: 'Leo Messi', edad: '50', telefono: '6181762611', tratamiento: 'Brackets'},
+        {id:3, nombre: 'Neymar', edad: '20', telefono: '6181762613', tratamiento: 'Muelas del juicio'},
+        {id:4, nombre: 'Pelé', edad: '80', telefono: '6181762614', tratamiento: 'Extraccion'},
+        {id:5, nombre: 'Hugo Sanchezz', edad: '80', telefono: '727829278', tratamiento: 'Modesto'}
+    ];
+
     const initialState = {
-        clientes : [
-            {id:1, nombre: 'Memo Ochoa', edad: '30', telefono: '6181762612', tratamiento: 'Muelas picadas'},
-            {id:2, nombre: 'Leo Messi', edad: '50', telefono: '6181762611', tratamiento: 'Brackets'},
-            {id:3, nombre: 'Neymar', edad: '20', telefono: '6181762613', tratamiento: 'Muelas del juicio'},
-            {id:4, nombre: 'Pelé', edad: '80', telefono: '6181762614', tratamiento: 'Extraccion'},
-            {id:5, nombre: 'Hugo Sanchezz', edad: '80', telefono: '727829278', tratamiento: 'Modesto'}
-        ],
+        clientes : [],
         formulario: false
     }
 
@@ -35,6 +39,13 @@ const ClienteState = props => {
         })
     }
 
+    //Obtener a los clientes
+    const obtenerClientes = () =>{
+        dispatch({
+            type: OBTENER_CLIENTES,
+            payload: clientes
+        })
+    }
 
     return(
         <clienteContext.Provider
@@ -42,7 +53,8 @@ const ClienteState = props => {
                 formulario: state.formulario,
                 clientes: state.clientes,
                 mostrarFormulario,
-                ocultarFormulario
+                ocultarFormulario,
+                obtenerClientes
             }}
         >
             {props.children}
