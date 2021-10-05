@@ -6,7 +6,7 @@ const NuevoCliente = () => {
 
     //Obtener el state del formulario
     const clientesContext = useContext(clienteContext);
-    const { formulario, mostrarFormulario, ocultarFormulario, agregarCliente } = clientesContext;
+    const { formulario, errorformulario, mostrarFormulario, ocultarFormulario, agregarCliente, mostrarError } = clientesContext;
 
 
     //State para cliente
@@ -34,13 +34,16 @@ const NuevoCliente = () => {
         e.preventDefault();
 
         //Validar el cliente
-        if(nombre.trim() ==='' || tratamiento.trim()==='' || edad.trim()==='' || tratamiento.trim() === '') {
-            console.log('Campos incompletos');
+        if(nombre.trim() ==='' || telefono.trim()==='' || edad.trim()==='' || tratamiento.trim() === '') {
+            // console.log('Campos incompletos');
+            mostrarError();
             return;
         }
 
-        if(parseInt(edad, 10) < 1){
-            console.log('Edad invalida');
+        if(parseInt(edad, 10) < 1 || parseInt(telefono, 10) < 1){
+            // console.log('Edad invalida');
+            mostrarError();
+            return;
         }
         //en caso de que este correcto agregar al State
         agregarCliente(cliente);
@@ -70,7 +73,8 @@ const NuevoCliente = () => {
                 className="btn btn-block btn-azul"
                 onClick={onClickForm}
             >Nuevo Paciente</button> 
-
+            {errorformulario ? <div className="mt-2 alert alert-danger" role="alert">Hubo un error!</div>
+                : null}
             {formulario ?
                     (
                         <form

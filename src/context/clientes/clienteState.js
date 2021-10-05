@@ -7,6 +7,7 @@ import clienteReducer from './clienteReducer';
 import { 
     MOSTRAR_FORMULARIO_CLIENTE,
     OCULTAR_FORMULARIO_CLIENTE,
+    VALIDAR_FORMULARIO_CLIENTE,
     OBTENER_CLIENTES,
     AGREGAR_CLIENTE
 } from '../../types';
@@ -23,7 +24,8 @@ const ClienteState = props => {
 
     const initialState = {
         clientes : [],
-        formulario: false
+        formulario: false,
+        errorformulario: false
     }
 
     //Dispatch para ejecutar las acciones
@@ -59,16 +61,24 @@ const ClienteState = props => {
         })
     }
 
+    //Validar formulario
+    const mostrarError = () =>{
+        dispatch({
+            type: VALIDAR_FORMULARIO_CLIENTE
+        })
+    }
 
     return(
         <clienteContext.Provider
             value={{
                 formulario: state.formulario,
                 clientes: state.clientes,
+                errorformulario: state.errorformulario,
                 mostrarFormulario,
                 ocultarFormulario,
                 obtenerClientes,
-                agregarCliente
+                agregarCliente,
+                mostrarError
             }}
         >
             {props.children}
