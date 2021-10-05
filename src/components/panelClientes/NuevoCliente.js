@@ -6,7 +6,7 @@ const NuevoCliente = () => {
 
     //Obtener el state del formulario
     const clientesContext = useContext(clienteContext);
-    const { formulario, mostrarFormulario, ocultarFormulario } = clientesContext;
+    const { formulario, mostrarFormulario, ocultarFormulario, agregarCliente } = clientesContext;
 
 
     //State para cliente
@@ -43,8 +43,15 @@ const NuevoCliente = () => {
             console.log('Edad invalida');
         }
         //en caso de que este correcto agregar al State
-
+        agregarCliente(cliente);
         //Reiniciar el form
+        guardarCliente({
+            nombre: '',
+            edad: '',
+            telefono: '',
+            tratamiento: ''
+        })
+
     }
 
     const onClickForm = () =>{

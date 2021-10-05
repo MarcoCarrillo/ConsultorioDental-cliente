@@ -1,4 +1,5 @@
 import React, {useReducer} from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import clienteContext from './clienteContext';
 import clienteReducer from './clienteReducer';
@@ -6,7 +7,8 @@ import clienteReducer from './clienteReducer';
 import { 
     MOSTRAR_FORMULARIO_CLIENTE,
     OCULTAR_FORMULARIO_CLIENTE,
-    OBTENER_CLIENTES
+    OBTENER_CLIENTES,
+    AGREGAR_CLIENTE
 } from '../../types';
 
 const ClienteState = props => {
@@ -47,6 +49,17 @@ const ClienteState = props => {
         })
     }
 
+    //Agregar un nuevo clientes 
+    const agregarCliente = cliente =>{
+        cliente.id = uuidv4();
+        //Insertar el proyecto en el state de
+        dispatch({
+            type: AGREGAR_CLIENTE,
+            payload: cliente
+        })
+    }
+
+
     return(
         <clienteContext.Provider
             value={{
@@ -54,7 +67,8 @@ const ClienteState = props => {
                 clientes: state.clientes,
                 mostrarFormulario,
                 ocultarFormulario,
-                obtenerClientes
+                obtenerClientes,
+                agregarCliente
             }}
         >
             {props.children}

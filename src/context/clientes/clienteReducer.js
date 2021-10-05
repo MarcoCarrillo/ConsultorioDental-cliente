@@ -1,7 +1,8 @@
 import { 
     MOSTRAR_FORMULARIO_CLIENTE,
     OCULTAR_FORMULARIO_CLIENTE,
-    OBTENER_CLIENTES
+    OBTENER_CLIENTES,
+    AGREGAR_CLIENTE
 } from '../../types';
 
 export default (state, action) => {
@@ -21,6 +22,12 @@ export default (state, action) => {
             return{
                 ...state,
                 clientes: action.payload
+            }
+        case AGREGAR_CLIENTE:
+            return{
+                ...state,
+                clientes: [...state.clientes, action.payload],
+                formulario: false
             }
 
         default: 
