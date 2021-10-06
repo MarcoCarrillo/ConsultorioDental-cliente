@@ -9,7 +9,8 @@ import {
     OCULTAR_FORMULARIO_CLIENTE,
     VALIDAR_FORMULARIO_CLIENTE,
     OBTENER_CLIENTES,
-    AGREGAR_CLIENTE
+    AGREGAR_CLIENTE,
+    CLIENTE_ACTUAL
 } from '../../types';
 
 const ClienteState = props => {
@@ -25,7 +26,8 @@ const ClienteState = props => {
     const initialState = {
         clientes : [],
         formulario: false,
-        errorformulario: false
+        errorformulario: false,
+        cliente: null
     }
 
     //Dispatch para ejecutar las acciones
@@ -68,17 +70,27 @@ const ClienteState = props => {
         })
     }
 
+    //Cliente actual
+    const clienteActual = clienteId => {
+        dispatch({
+            type: CLIENTE_ACTUAL,
+            payload: clienteId
+        })
+    }
+
     return(
         <clienteContext.Provider
             value={{
                 formulario: state.formulario,
                 clientes: state.clientes,
                 errorformulario: state.errorformulario,
+                cliente: state.cliente,
                 mostrarFormulario,
                 ocultarFormulario,
                 obtenerClientes,
                 agregarCliente,
-                mostrarError
+                mostrarError,
+                clienteActual
             }}
         >
             {props.children}
