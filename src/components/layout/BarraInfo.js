@@ -1,6 +1,17 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useContext} from 'react';
+import clienteContext from '../../context/clientes/clienteContext';
 
 const BarraInfo = () => {
+
+    //Obtener el state de clientes
+    const clientesContext = useContext(clienteContext);
+    const { cliente } = clientesContext;
+
+    //Si no hay cliente seleccionado
+    if(!cliente) return <h2>Selecciona un cliente</h2>;
+
+    //Array destructuring para extraer los datos del cliente
+    const [clienteActual] = cliente;
     return ( 
         <Fragment>
         
@@ -14,12 +25,12 @@ const BarraInfo = () => {
                     <div className="container col-10">
                         <div className="row info-cliente">
                             <div className="col align-self-start">
-                                <p>Nombre: Marco Carrillo</p>
-                                <p>Tratamiento: Muelas picadas</p>
+                                <p>Nombre: {clienteActual.nombre}</p>
+                                <p>Tratamiento: {clienteActual.tratamiento}</p>
                             </div>
                             <div className="col align-self-center">
-                                <p>Edad: 18</p>
-                                <p>Telefono: 6181028267</p>
+                                <p>Edad: {clienteActual.edad}</p>
+                                <p>Telefono: {clienteActual.telefono}</p>
                             </div>
                         </div>
                     </div>
