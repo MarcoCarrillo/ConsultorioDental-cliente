@@ -14,7 +14,7 @@ const ListadoClientes = () => {
         obtenerClientes();        
     }, []);
 
-    if(clientes.length === 0) return null;
+    if(clientes.length === 0) return<div class="alert alert-info" role="alert">No hay pacientes, comienza agregando uno!</div>;
 
     
 

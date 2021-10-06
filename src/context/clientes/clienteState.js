@@ -10,7 +10,8 @@ import {
     VALIDAR_FORMULARIO_CLIENTE,
     OBTENER_CLIENTES,
     AGREGAR_CLIENTE,
-    CLIENTE_ACTUAL
+    CLIENTE_ACTUAL,
+    ELIMINAR_CLIENTE
 } from '../../types';
 
 const ClienteState = props => {
@@ -78,6 +79,14 @@ const ClienteState = props => {
         })
     }
 
+    //Elimina un cliente
+    const eliminarCliente = clienteId => {
+        dispatch({
+            type: ELIMINAR_CLIENTE,
+            payload: clienteId
+        })
+    }
+
     return(
         <clienteContext.Provider
             value={{
@@ -90,7 +99,8 @@ const ClienteState = props => {
                 obtenerClientes,
                 agregarCliente,
                 mostrarError,
-                clienteActual
+                clienteActual,
+                eliminarCliente
             }}
         >
             {props.children}

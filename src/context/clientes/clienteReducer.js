@@ -4,7 +4,8 @@ import {
     OBTENER_CLIENTES,
     AGREGAR_CLIENTE,
     VALIDAR_FORMULARIO_CLIENTE,
-    CLIENTE_ACTUAL
+    CLIENTE_ACTUAL,
+    ELIMINAR_CLIENTE
 } from '../../types';
 
 export default (state, action) => {
@@ -41,6 +42,12 @@ export default (state, action) => {
             return{
                 ...state,
                 cliente: state.clientes.filter(cliente => cliente.id === action.payload)
+            }
+        case ELIMINAR_CLIENTE:
+            return{
+                ...state,
+                clientes: state.clientes.filter(cliente => cliente.id !== action.payload), //Traer los que no sean iguales,
+                cliente: null
             }
         default: 
             return state;

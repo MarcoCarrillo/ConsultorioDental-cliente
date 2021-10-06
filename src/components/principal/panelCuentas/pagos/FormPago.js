@@ -1,6 +1,14 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react';
+import clienteContext from '../../../../context/clientes/clienteContext';
 
 const FormPago = () => {
+
+    //Obtener el state de clientes
+    const clientesContext = useContext(clienteContext);
+    const { cliente, eliminarCliente } = clientesContext;
+
+    //Array destructuring para extraer los datos del cliente
+    const [clienteActual] = cliente;
 
     //State
     const [pago, guardarPago] = useState({
@@ -50,6 +58,7 @@ const FormPago = () => {
                 <button
                 type="button"
                 className="btn btn-danger m-auto mt-3"
+                onClick={() => eliminarCliente(clienteActual.id)}
                 >Eliminar Paciente &times;</button>
             </div>
         </div>
