@@ -5,8 +5,7 @@ const ListadoCargos = () => {
 
     const cargos = [
         {concepto: 'Anticipo', cantidad: 5500, fecha:'2021-10-19'},
-        {concepto: 'Tratamiento dental', cantidad: 3000, fecha:'2021-10-20'},
-        {concepto: 'Nueva muela', cantidad: 4000, fecha:'2021-10-29'}
+        {concepto: 'Tratamiento dental', cantidad: 3000, fecha:'2021-10-20'}
     ]
 
     return ( 
