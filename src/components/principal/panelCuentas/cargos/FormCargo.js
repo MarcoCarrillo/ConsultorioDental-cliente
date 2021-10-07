@@ -1,6 +1,16 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react';
+import clienteContext from '../../../../context/clientes/clienteContext';
+import cargoContext from '../../../../context/cargos/cargoContext';
 
 const FormCargo = () => {
+
+    //Obtener el state de clientes
+    const clientesContext = useContext(clienteContext);
+    const { cliente } = clientesContext;
+
+    //Obtener la funcion del context de cargos
+    const cargosContext = useContext(cargoContext);
+    const { agregarCargo } = cargosContext;    
 
     //State del formulario de cargo
     const [cargo, guardarCargo] = useState({
@@ -8,6 +18,9 @@ const FormCargo = () => {
         cantidad: 0,
         fecha: ''
     });
+
+    //Array destructuring para extraer los datos del cliente
+    const [clienteActual] = cliente;
 
     //Destructuring
     const {concepto, cantidad, fecha} = cargo;
@@ -29,6 +42,8 @@ const FormCargo = () => {
         //Pasar la validacion
 
         //Agregar el cargo al state de cargos
+        cargo.clienteId = clienteActual.id;
+        agregarCargo(cargo);
         
         //Reiniciar el form
     }
