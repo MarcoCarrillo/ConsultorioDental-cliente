@@ -1,24 +1,26 @@
 import React, {useReducer} from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import CargoContext from './cargoContext';
 import CargoReducer from './cargoReducer';
 import {
     CARGOS_CLIENTE,
     AGREGAR_CARGO,
-    VALIDAR_FORMULARIO_CARGO
+    VALIDAR_FORMULARIO_CARGO,
+    ELIMINAR_CARGO
 } from '../../types';
 
 const CargoState = props => {
     const initialState = {
         cargos: [
-            {concepto: 'Anticipo', cantidad: 100, fecha:'2021-10-19', clienteId: 1},
-            {concepto: 'Tratamiento dental', cantidad: 200, fecha:'2021-10-20', clienteId: 2},
-            {concepto: 'Tratamiento', cantidad: 32000, fecha:'2021-10-20', clienteId: 3},
-            {concepto: 'Anticipo', cantidad: 5500, fecha:'2021-10-19', clienteId: 3},
-            {concepto: 'Tratamiento dental', cantidad: 100, fecha:'2021-10-20', clienteId: 1},
-            {concepto: 'Tratamiento', cantidad: 200, fecha:'2021-10-20', clienteId: 2},
-            {concepto: 'Anticipo', cantidad: 200, fecha:'2021-10-19', clienteId: 2},
-            {concepto: 'Tratamiento dental', cantidad: 3000, fecha:'2021-10-20', clienteId: 3},
-            {concepto: 'Tratamiento', cantidad: 100, fecha:'2021-10-20', clienteId: 1}
+            {id: 1,concepto: 'Anticipo', cantidad: 100, fecha:'2021-10-19', clienteId: 1},
+            {id: 2,concepto: 'Tratamiento dental', cantidad: 200, fecha:'2021-10-20', clienteId: 2},
+            {id: 3,concepto: 'Tratamiento', cantidad: 32000, fecha:'2021-10-20', clienteId: 3},
+            {id: 4,concepto: 'Anticipo', cantidad: 5500, fecha:'2021-10-19', clienteId: 3},
+            {id: 5,concepto: 'Tratamiento dental', cantidad: 100, fecha:'2021-10-20', clienteId: 1},
+            {id: 6,concepto: 'Tratamiento', cantidad: 200, fecha:'2021-10-20', clienteId: 2},
+            {id: 7,concepto: 'Anticipo', cantidad: 200, fecha:'2021-10-19', clienteId: 2},
+            {id: 8,concepto: 'Tratamiento dental', cantidad: 3000, fecha:'2021-10-20', clienteId: 3},
+            {id: 9,concepto: 'Tratamiento', cantidad: 100, fecha:'2021-10-20', clienteId: 1}
         ],
         cargoscliente: null,
         errorcargo: false
@@ -39,6 +41,7 @@ const CargoState = props => {
 
     //Crear un nuevo cargo
     const agregarCargo = cargo =>{
+        cargo.id = uuidv4();
         dispatch({
             type: AGREGAR_CARGO,
             payload: cargo
@@ -52,6 +55,14 @@ const CargoState = props => {
         })
     }
 
+    //Elimina un cargo por id
+    const eliminarCargo = id =>{
+        dispatch({
+           type: ELIMINAR_CARGO,
+           payload: id
+        })
+    }
+
     return (
         <CargoContext.Provider
             value={{
@@ -60,7 +71,8 @@ const CargoState = props => {
                 errorcargo: state.errorcargo,
                 obtenerCargos,
                 agregarCargo,
-                validarCargo
+                validarCargo,
+                eliminarCargo
             }}
         >
             {props.children}

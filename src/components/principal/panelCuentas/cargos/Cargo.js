@@ -1,6 +1,27 @@
-import React from 'react'
+import React, {useContext} from 'react';
+import cargoContext from '../../../../context/cargos/cargoContext';
+import clienteContext from '../../../../context/clientes/clienteContext';
 
 const Cargo = ({cargo}) => {
+
+    //Obtener el state de clientes
+    const clientesContext = useContext(clienteContext);
+    const { cliente } = clientesContext;
+
+    //Obtener los cargos del cliente
+    const cargosContext = useContext(cargoContext);
+    const { eliminarCargo, obtenerCargos } = cargosContext;
+
+    //Extraer cliente actual
+    const [ clienteActual ] = cliente;
+
+    //Cuando el usuario da clic en eliminar
+    const cargoEliminar = id => {
+        eliminarCargo(id);
+        obtenerCargos(clienteActual.id);
+    }
+
+
     return ( 
         <li className="cargos mt-2">
             <p>Concepto: {cargo.concepto}
@@ -9,7 +30,7 @@ const Cargo = ({cargo}) => {
             <p>Fecha: {cargo.fecha}</p>
             <div className="acciones mt-2">
                 <button className="btn btn-warning mt-2">Editar</button>
-                <button className="btn btn-danger mt-2">Eliminar</button>
+                <button className="btn btn-danger mt-2" onClick={ () => cargoEliminar(cargo.id) }>Eliminar</button>
             </div>
         </li>
      );

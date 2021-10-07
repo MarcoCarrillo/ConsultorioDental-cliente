@@ -19,6 +19,7 @@ const ListadoCargos = () => {
                     </li>)
                 : cargoscliente.map(cargo => (
                     <Cargo
+                        key={cargo.id}
                         cargo={cargo}
                     />
                 ))
