@@ -19,7 +19,8 @@ export default (state, action) => {
         case OCULTAR_FORMULARIO_CLIENTE:
             return{
                 ...state,
-                formulario: false
+                formulario: false,
+                errorformulario: false
             }
         case VALIDAR_FORMULARIO_CLIENTE:
             return{

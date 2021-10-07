@@ -10,7 +10,7 @@ const FormCargo = () => {
 
     //Obtener la funcion del context de cargos
     const cargosContext = useContext(cargoContext);
-    const { agregarCargo } = cargosContext;    
+    const { errorcargo, agregarCargo, validarCargo, obtenerCargos } = cargosContext;    
 
     //State del formulario de cargo
     const [cargo, guardarCargo] = useState({
@@ -38,23 +38,37 @@ const FormCargo = () => {
         e.preventDefault();
 
         //Validar
-
+        if(concepto.trim() === '' || parseInt(cantidad, 10) < 1 || fecha.trim() === ''){
+            validarCargo();
+            return;
+        }
         //Pasar la validacion
 
         //Agregar el cargo al state de cargos
         cargo.clienteId = clienteActual.id;
         agregarCargo(cargo);
+
+        //Obtener y filtrar los cargos del cliente actual
+        obtenerCargos(clienteActual.id);
         
         //Reiniciar el form
+        guardarCargo({
+            concepto: '',
+            cantidad: 0,
+            fecha: ''
+        })
     }
 
     return ( 
         <div className="form-container">
             <h2 className="mb-4">Agregar Cargo</h2>
+            
+            
             <form
                 className="ml-4"
                 onSubmit={onSubmit}
             >
+                {errorcargo ? <div class="alert alert-danger" role="alert">Hubo un error, intenta de nuevo.</div> :null}
                 <div className="mb-3">
                     <label htmlFor="concepto-cargo" className="form-label">Concepto de cargo</label>
                     <input type="text" className="form-control" id="concepto-cargo" placeholder="Ej. Diente nuevo" onChange={onChange} value={concepto} name='concepto' />

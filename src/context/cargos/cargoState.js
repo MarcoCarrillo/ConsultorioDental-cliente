@@ -3,7 +3,8 @@ import CargoContext from './cargoContext';
 import CargoReducer from './cargoReducer';
 import {
     CARGOS_CLIENTE,
-    AGREGAR_CARGO
+    AGREGAR_CARGO,
+    VALIDAR_FORMULARIO_CARGO
 } from '../../types';
 
 const CargoState = props => {
@@ -19,7 +20,8 @@ const CargoState = props => {
             {concepto: 'Tratamiento dental', cantidad: 3000, fecha:'2021-10-20', clienteId: 3},
             {concepto: 'Tratamiento', cantidad: 100, fecha:'2021-10-20', clienteId: 1}
         ],
-        cargoscliente: null
+        cargoscliente: null,
+        errorcargo: false
     }
 
     //Crear state y dispatch
@@ -43,13 +45,22 @@ const CargoState = props => {
         })
     }
 
+    //Valida y muestra un error en caso de que sea necesario 
+    const validarCargo = () =>{
+        dispatch({
+            type: VALIDAR_FORMULARIO_CARGO
+        })
+    }
+
     return (
         <CargoContext.Provider
             value={{
                 cargos: state.cargos,
                 cargoscliente: state.cargoscliente,
+                errorcargo: state.errorcargo,
                 obtenerCargos,
-                agregarCargo
+                agregarCargo,
+                validarCargo
             }}
         >
             {props.children}

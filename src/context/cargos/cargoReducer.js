@@ -1,6 +1,7 @@
 import {
     CARGOS_CLIENTE,
-    AGREGAR_CARGO
+    AGREGAR_CARGO,
+    VALIDAR_FORMULARIO_CARGO
 } from '../../types';
 
 export default (state, action) => {
@@ -13,7 +14,13 @@ export default (state, action) => {
         case AGREGAR_CARGO:
             return{
                 ...state,
-                cargos: [...state.cargos, action.payload]
+                cargos: [...state.cargos, action.payload],
+                errorcargo: false
+            }
+        case VALIDAR_FORMULARIO_CARGO:
+            return{
+                ...state,
+                errorcargo: true
             }
 
         default:
