@@ -3,10 +3,7 @@ import Cargo from './Cargo';
 
 const ListadoCargos = () => {
 
-    const cargos = [
-        {concepto: 'Anticipo', cantidad: 5500, fecha:'2021-10-19'},
-        {concepto: 'Tratamiento dental', cantidad: 3000, fecha:'2021-10-20'}
-    ]
+    const cargos = [];
 
     return ( 
         <ul className="cargos-realizados p-4">
