@@ -1,6 +1,9 @@
 import React, {useReducer} from 'react';
 import CargoContext from './cargoContext';
 import CargoReducer from './cargoReducer';
+import {
+    CARGOS_CLIENTE
+} from '../../types';
 
 const CargoState = props => {
     const initialState = {
@@ -20,10 +23,21 @@ const CargoState = props => {
     //Crear state y dispatch
     const [state, dispatch] = useReducer(CargoReducer, initialState);
 
+    //Funciones
+
+    //Obtener los cargos de un cliente 
+    const obtenerCargos = clienteId => {
+        dispatch({
+            type: CARGOS_CLIENTE,
+            payload: clienteId
+        })
+    }
+
     return (
         <CargoContext.Provider
             value={{
-                cargos: state.cargos
+                cargos: state.cargos,
+                obtenerCargos
             }}
         >
             {props.children}

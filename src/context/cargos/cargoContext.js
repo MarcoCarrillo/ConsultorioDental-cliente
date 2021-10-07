@@ -1,5 +1,5 @@
 import {createContext} from 'react';
 
-const CargoContext = createContext();
+const cargoContext = createContext();
 
-export default CargoContext;
+export default cargoContext;
