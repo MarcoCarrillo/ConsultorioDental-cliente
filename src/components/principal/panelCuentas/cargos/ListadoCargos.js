@@ -1,19 +1,23 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Cargo from './Cargo';
+import cargoContext from '../../../../context/cargos/cargoContext';
 
 const ListadoCargos = () => {
 
-    const cargos = [];
+    //Obtener los cargos del cliente
+    const cargosContext = useContext(cargoContext);
+    const { cargoscliente } = cargosContext;
+
 
     return ( 
         <ul className="cargos-realizados p-4">
-            {cargos.length === 0 
+            {cargoscliente.length === 0 
                 ? (<li>
                         <div class="alert alert-warning" role="alert">
                             El cliente no tiene cargos!
                         </div>
                     </li>)
-                : cargos.map(cargo => (
+                : cargoscliente.map(cargo => (
                     <Cargo
                         cargo={cargo}
                     />

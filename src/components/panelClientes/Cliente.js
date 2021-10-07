@@ -8,7 +8,7 @@ const Cliente = ({cliente}) => {
     const clientesContext = useContext(clienteContext);
     const { clienteActual } = clientesContext;
 
-    //Obtener la funcion del context de tarea
+    //Obtener la funcion del context de cargos
     const cargosContext = useContext(cargoContext);
     const { obtenerCargos } = cargosContext;
 
