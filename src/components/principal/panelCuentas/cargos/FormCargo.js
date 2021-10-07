@@ -22,7 +22,15 @@ const FormCargo = () => {
 
     //On submit 
     const onSubmit = e => {
-        e.preventDefault()
+        e.preventDefault();
+
+        //Validar
+
+        //Pasar la validacion
+
+        //Agregar el cargo al state de cargos
+        
+        //Reiniciar el form
     }
 
     return ( 

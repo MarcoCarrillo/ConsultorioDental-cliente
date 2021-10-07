@@ -1,5 +1,6 @@
 import {
-    CARGOS_CLIENTE
+    CARGOS_CLIENTE,
+    AGREGAR_CARGO
 } from '../../types';
 
 export default (state, action) => {
@@ -8,6 +9,11 @@ export default (state, action) => {
             return{
                 ...state,
                 cargoscliente: state.cargos.filter(cargo => cargo.clienteId === action.payload)
+            }
+        case AGREGAR_CARGO:
+            return{
+                ...state,
+                cargos: [...state.cargos, action.payload]
             }
 
         default:
