@@ -4,18 +4,21 @@ import Login from '../src/components/auth/Login';
 import Registro from '../src/components/auth/Registro';
 import MenuPrincipal from './components/principal/MenuPrincipal';
 
-import ClienteState from './context/clientes/clienteState'
+import ClienteState from './context/clientes/clienteState';
+import CargoState from './context/cargos/cargoState';
 
 function App() {
   return (
     <ClienteState>
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Login} />
-          <Route exact path="/registro" component={Registro} />
-          <Route exact path="/menu-principal" component={MenuPrincipal} />
-        </Switch>
-      </Router>
+      <CargoState>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Login} />
+            <Route exact path="/registro" component={Registro} />
+            <Route exact path="/menu-principal" component={MenuPrincipal} />
+          </Switch>
+        </Router>
+      </CargoState>
     </ClienteState>
     
   );
