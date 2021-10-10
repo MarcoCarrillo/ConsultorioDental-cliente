@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import clienteContext from '../../../../context/clientes/clienteContext';
 import cargoContext from '../../../../context/cargos/cargoContext';
 
@@ -10,7 +10,20 @@ const FormCargo = () => {
 
     //Obtener la funcion del context de cargos
     const cargosContext = useContext(cargoContext);
-    const { errorcargo, agregarCargo, validarCargo, obtenerCargos } = cargosContext;    
+    const { errorcargo, cargoseleccionado, agregarCargo, validarCargo, obtenerCargos } = cargosContext;    
+
+    //Effect que detecta cuando hay un cargo seleccionado
+    useEffect(() => {
+        if(cargoseleccionado !== null) {
+            guardarCargo(cargoseleccionado);
+        }else{
+            guardarCargo({
+                concepto: '',
+                cantidad: 0,
+                fecha: ''
+            });
+        }
+    },[cargoseleccionado]);
 
     //State del formulario de cargo
     const [cargo, guardarCargo] = useState({
@@ -81,7 +94,7 @@ const FormCargo = () => {
                     <label htmlFor="fecha-cargo" className="form-label">Fecha</label>
                     <input type="date" className="form-control" id="fecha-cargo" onChange={onChange} value={fecha} name="fecha"/>
                 </div>
-                <input type='submit' className="btn btn-azul mb-4" value='Agregar cargo' />
+                <input type='submit' className="btn btn-azul mb-4" value={cargoseleccionado ? 'Editar Cargo' : 'Agregar Cargo'} />
             </form>
         </div>
      );
