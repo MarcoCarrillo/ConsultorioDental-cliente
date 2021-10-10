@@ -10,7 +10,7 @@ const Pago = ({pago}) => {
 
     //Obtener los pagos del cliente
     const pagosContext = useContext(pagoContext);
-    const { eliminarPago, obtenerPagos } = pagosContext;
+    const { eliminarPago, obtenerPagos, guardarPagoActual } = pagosContext;
 
     //Extraer cliente 
     const [clienteActual] = cliente;
@@ -21,6 +21,12 @@ const Pago = ({pago}) => {
         obtenerPagos(clienteActual.id);
     }
 
+    //Agrega un pago actual cuando se quiera editar
+    const seleccionarPago = pago => {
+        guardarPagoActual(pago);
+    }
+
+
     return ( 
         <li className="cargos mt-2">
             <p>Concepto: {pago.concepto}
@@ -28,7 +34,7 @@ const Pago = ({pago}) => {
             </p>
             <p>Fecha: {pago.fecha}</p>
             <div className="acciones mt-2">
-                <button className="btn btn-warning mt-2">Editar</button>
+                <button className="btn btn-warning mt-2" onClick={() => seleccionarPago(pago)}>Editar</button>
                 <button className="btn btn-danger mt-2" onClick={() => pagoEliminar(pago.id)}>Eliminar</button>
             </div>
         </li>

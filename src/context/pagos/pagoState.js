@@ -7,7 +7,8 @@ import {
     PAGOS_CLIENTE,
     AGREGAR_PAGO,
     VALIDAR_FORMULARIO_PAGO,
-    ELIMINAR_PAGO
+    ELIMINAR_PAGO,
+    PAGO_ACTUAL
 } from '../../types';
 
 const PagoState = props => {
@@ -18,7 +19,8 @@ const PagoState = props => {
             {id: 3,concepto: 'Primer mensualidad id 3', cantidad: 500, fecha:'2021-10-19', clienteId: 3},
         ],
         pagoscliente: null,
-        errorpago: false
+        errorpago: false,
+        pagoseleccionado: null
     }
 
     //Crear dispatch y state
@@ -58,16 +60,26 @@ const PagoState = props => {
         })
     }
 
+    //Extrae pago para edicion
+    const guardarPagoActual = pago =>{
+        dispatch({
+            type: PAGO_ACTUAL,
+            payload: pago
+        })
+    }
+
     return(
         <PagoContext.Provider
             value={{
                pagos: state.pagos,
                pagoscliente: state.pagoscliente,
                errorpago: state.errorpago,
+               pagoseleccionado: state.pagoseleccionado,
                obtenerPagos,
                agregarPago,
                validarPago,
-               eliminarPago
+               eliminarPago,
+               guardarPagoActual
             }}
         >
             {props.children}

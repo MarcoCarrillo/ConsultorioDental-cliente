@@ -2,7 +2,8 @@ import {
     PAGOS_CLIENTE,
     AGREGAR_PAGO,
     VALIDAR_FORMULARIO_PAGO,
-    ELIMINAR_PAGO
+    ELIMINAR_PAGO,
+    PAGO_ACTUAL
 } from '../../types';
 
 export default (state, action) => {
@@ -27,6 +28,11 @@ export default (state, action) => {
             return{
                 ...state,
                 pagos: state.pagos.filter( pago => pago.id !== action.payload)
+            }
+        case PAGO_ACTUAL:
+            return{
+                ...state,
+                pagoseleccionado: action.payload
             }
 
         default:
