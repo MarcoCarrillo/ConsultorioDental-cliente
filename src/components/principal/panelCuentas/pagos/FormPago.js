@@ -31,6 +31,12 @@ const FormPago = () => {
     //On submit
     const onSubmit = e => {
         e.preventDefault();
+
+        //Validar
+
+        //Agregar pago al state de pagos
+
+        //reiniciar el form
     }
 
     return ( 

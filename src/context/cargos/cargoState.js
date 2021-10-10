@@ -16,13 +16,7 @@ const CargoState = props => {
         cargos: [
             {id: 1,concepto: 'Anticipo', cantidad: 100, fecha:'2021-10-19', clienteId: 1},
             {id: 2,concepto: 'Tratamiento dental', cantidad: 200, fecha:'2021-10-20', clienteId: 2},
-            {id: 3,concepto: 'Tratamiento', cantidad: 32000, fecha:'2021-10-20', clienteId: 3},
-            {id: 4,concepto: 'Anticipo', cantidad: 5500, fecha:'2021-10-19', clienteId: 3},
-            {id: 5,concepto: 'Tratamiento dental', cantidad: 100, fecha:'2021-10-20', clienteId: 1},
-            {id: 6,concepto: 'Tratamiento', cantidad: 200, fecha:'2021-10-20', clienteId: 2},
-            {id: 7,concepto: 'Anticipo', cantidad: 200, fecha:'2021-10-19', clienteId: 2},
-            {id: 8,concepto: 'Tratamiento dental', cantidad: 3000, fecha:'2021-10-20', clienteId: 3},
-            {id: 9,concepto: 'Tratamiento', cantidad: 100, fecha:'2021-10-20', clienteId: 1}
+            {id: 3,concepto: 'Tratamiento', cantidad: 32000, fecha:'2021-10-20', clienteId: 3}
         ],
         cargoscliente: null,
         errorcargo: false,

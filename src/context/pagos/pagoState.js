@@ -3,7 +3,8 @@ import PagoContext from './pagoContext';
 import PagoReducer from './pagoReducer';
 
 import {
-    PAGOS_CLIENTE
+    PAGOS_CLIENTE,
+    AGREGAR_PAGO
 } from '../../types';
 
 const PagoState = props => {
@@ -12,7 +13,6 @@ const PagoState = props => {
             {concepto: 'Primer mensualidad', cantidad: 500, fecha:'2021-10-19', clienteId: 1},
             {concepto: 'Pago del diente', cantidad: 3000, fecha:'2021-10-20', clienteId: 2},
             {concepto: 'Primer mensualidad id 3', cantidad: 500, fecha:'2021-10-19', clienteId: 3},
-            {concepto: 'Pago del diente id 1', cantidad: 3000, fecha:'2021-10-20', clienteId: 1}
         ],
         pagoscliente: null
     }
@@ -30,12 +30,22 @@ const PagoState = props => {
         })
     }
 
+    //Agregar un nuevo pago
+    const agregarPago = pago =>{
+        dispatch({
+            type: AGREGAR_PAGO,
+            payload: pago
+        })
+    }
+
+
     return(
         <PagoContext.Provider
             value={{
                pagos: state.pagos,
                pagoscliente: state.pagoscliente,
-               obtenerPagos
+               obtenerPagos,
+               agregarPago
             }}
         >
             {props.children}
