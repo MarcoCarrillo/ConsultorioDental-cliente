@@ -3,10 +3,7 @@ import Pago from './Pago';
 
 const ListadoPagos = () => {
     
-    const pagos = [
-        {concepto: 'Primer mensualidad', cantidad: 500, fecha:'2021-10-19'},
-        {concepto: 'Pago del diente', cantidad: 3000, fecha:'2021-10-20'}
-    ]
+    const pagos = []
 
     return ( 
         <ul className="cargos-realizados p-4">
