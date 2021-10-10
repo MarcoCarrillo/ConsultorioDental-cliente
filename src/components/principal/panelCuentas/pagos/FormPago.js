@@ -10,10 +10,7 @@ const FormPago = () => {
 
     //Obtener los pagos del cliente
     const pagosContext = useContext(pagoContext);
-    const { pagoseleccionado, errorpago, agregarPago, validarPago, obtenerPagos } = pagosContext;
-
-    //Array destructuring para extraer los datos del cliente
-    const [clienteActual] = cliente;
+    const { pagoseleccionado, errorpago, agregarPago, validarPago, obtenerPagos, actualizarPago } = pagosContext;
 
     //Effect para cuando se seleccione un pagos 
     useEffect(() => {
@@ -33,7 +30,10 @@ const FormPago = () => {
         concepto: '',
         cantidad: 0,
         fecha: ''
-    })
+    });
+
+    //Array destructuring para extraer los datos del cliente
+    const [clienteActual] = cliente;
 
     //Extraer valores
     const {concepto, cantidad, fecha} = pago;
@@ -51,15 +51,21 @@ const FormPago = () => {
         e.preventDefault();
 
         //Validar
-        //Validar
         if(concepto.trim() === '' || parseInt(cantidad, 10) < 1 || fecha.trim() === ''){
             validarPago();
             return;
         }
 
-        //Agregar pago al state de pagos
-        pago.clienteId = clienteActual.id; 
-        agregarPago(pago);
+        //Ver si es edicion o pago nuevo
+        if(pagoseleccionado === null){
+            //Agregar pago al state de pagos
+            pago.clienteId = clienteActual.id; 
+            agregarPago(pago);
+        } else{
+            //Editar
+            actualizarPago(pago);
+        }
+
         //Obtener de nuevo los pagos del cliente
         obtenerPagos(clienteActual.id)
         //reiniciar el form

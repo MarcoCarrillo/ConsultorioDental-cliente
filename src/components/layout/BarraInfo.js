@@ -8,7 +8,7 @@ const BarraInfo = () => {
     const { cliente } = clientesContext;
 
     //Si no hay cliente seleccionado
-    if(!cliente) return <h2>Selecciona un cliente</h2>;
+    if(!cliente) return <h2>Selecciona un paciente</h2>;
 
     //Array destructuring para extraer los datos del cliente
     const [clienteActual] = cliente;

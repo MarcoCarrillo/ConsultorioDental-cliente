@@ -8,7 +8,8 @@ import {
     AGREGAR_PAGO,
     VALIDAR_FORMULARIO_PAGO,
     ELIMINAR_PAGO,
-    PAGO_ACTUAL
+    PAGO_ACTUAL,
+    ACTUALIZAR_PAGO
 } from '../../types';
 
 const PagoState = props => {
@@ -68,6 +69,14 @@ const PagoState = props => {
         })
     }
 
+    //Actualizar pago
+    const actualizarPago = pago =>{
+        dispatch({
+            type: ACTUALIZAR_PAGO,
+            payload: pago
+        })
+    }
+
     return(
         <PagoContext.Provider
             value={{
@@ -79,7 +88,8 @@ const PagoState = props => {
                agregarPago,
                validarPago,
                eliminarPago,
-               guardarPagoActual
+               guardarPagoActual,
+               actualizarPago
             }}
         >
             {props.children}
