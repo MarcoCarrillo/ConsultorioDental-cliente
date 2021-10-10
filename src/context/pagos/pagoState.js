@@ -5,7 +5,8 @@ import PagoReducer from './pagoReducer';
 
 import {
     PAGOS_CLIENTE,
-    AGREGAR_PAGO
+    AGREGAR_PAGO,
+    VALIDAR_FORMULARIO_PAGO
 } from '../../types';
 
 const PagoState = props => {
@@ -15,7 +16,8 @@ const PagoState = props => {
             {concepto: 'Pago del diente', cantidad: 3000, fecha:'2021-10-20', clienteId: 2},
             {concepto: 'Primer mensualidad id 3', cantidad: 500, fecha:'2021-10-19', clienteId: 3},
         ],
-        pagoscliente: null
+        pagoscliente: null,
+        errorpago: false
     }
 
     //Crear dispatch y state
@@ -40,14 +42,22 @@ const PagoState = props => {
         })
     }
 
+    //Valida y muestra error
+    const validarPago = () =>{
+        dispatch({
+            type: VALIDAR_FORMULARIO_PAGO
+        })
+    }
 
     return(
         <PagoContext.Provider
             value={{
                pagos: state.pagos,
                pagoscliente: state.pagoscliente,
+               errorpago: state.errorpago,
                obtenerPagos,
-               agregarPago
+               agregarPago,
+               validarPago
             }}
         >
             {props.children}

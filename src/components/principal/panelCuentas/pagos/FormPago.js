@@ -10,7 +10,7 @@ const FormPago = () => {
 
     //Obtener los pagos del cliente
     const pagosContext = useContext(pagoContext);
-    const { agregarPago } = pagosContext;
+    const { errorpago, agregarPago, validarPago, obtenerPagos } = pagosContext;
 
     //Array destructuring para extraer los datos del cliente
     const [clienteActual] = cliente;
@@ -38,11 +38,23 @@ const FormPago = () => {
         e.preventDefault();
 
         //Validar
+        //Validar
+        if(concepto.trim() === '' || parseInt(cantidad, 10) < 1 || fecha.trim() === ''){
+            validarPago();
+            return;
+        }
 
         //Agregar pago al state de pagos
         pago.clienteId = clienteActual.id; 
         agregarPago(pago);
+        //Obtener de nuevo los pagos del cliente
+        obtenerPagos(clienteActual.id)
         //reiniciar el form
+        guardarPago({
+            concepto: '',
+            cantidad: 0,
+            fecha: ''
+        })
     }
 
     return ( 
@@ -52,6 +64,7 @@ const FormPago = () => {
                 className='ml-4'
                 onSubmit={onSubmit}
             >
+                 {errorpago ? <div class="alert alert-danger" role="alert">Hubo un error, intenta de nuevo.</div> :null}
                 <div className="mb-3">
                     <label htmlFor="concepto-pago" className="form-label">Concepto de pago</label>
                     <input type="text" className="form-control" id="concepto-pago" placeholder='Ej. Primer mensualidad' name='concepto' value={concepto} onChange={onChange}/>
