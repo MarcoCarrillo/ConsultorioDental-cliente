@@ -14,6 +14,7 @@ const PagoState = props => {
             {concepto: 'Primer mensualidad id 3', cantidad: 500, fecha:'2021-10-19', clienteId: 3},
             {concepto: 'Pago del diente id 1', cantidad: 3000, fecha:'2021-10-20', clienteId: 1}
         ],
+        pagoscliente: null
     }
 
     //Crear dispatch y state
@@ -33,6 +34,7 @@ const PagoState = props => {
         <PagoContext.Provider
             value={{
                pagos: state.pagos,
+               pagoscliente: state.pagoscliente,
                obtenerPagos
             }}
         >
