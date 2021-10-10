@@ -1,11 +1,16 @@
 import React, {useState, useContext} from 'react';
 import clienteContext from '../../../../context/clientes/clienteContext';
+import pagoContext from '../../../../context/pagos/pagoContext';
 
 const FormPago = () => {
 
     //Obtener el state de clientes
     const clientesContext = useContext(clienteContext);
     const { cliente, eliminarCliente } = clientesContext;
+
+    //Obtener los pagos del cliente
+    const pagosContext = useContext(pagoContext);
+    const { agregarPago } = pagosContext;
 
     //Array destructuring para extraer los datos del cliente
     const [clienteActual] = cliente;
@@ -35,7 +40,8 @@ const FormPago = () => {
         //Validar
 
         //Agregar pago al state de pagos
-
+        pago.clienteId = clienteActual.id; 
+        agregarPago(pago);
         //reiniciar el form
     }
 

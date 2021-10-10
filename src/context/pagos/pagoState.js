@@ -1,4 +1,5 @@
-import React, {useContext, useReducer} from 'react'
+import React, {useContext, useReducer} from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import PagoContext from './pagoContext';
 import PagoReducer from './pagoReducer';
 
@@ -32,6 +33,7 @@ const PagoState = props => {
 
     //Agregar un nuevo pago
     const agregarPago = pago =>{
+        pago.id = uuidv4();
         dispatch({
             type: AGREGAR_PAGO,
             payload: pago
