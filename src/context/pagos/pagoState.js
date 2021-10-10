@@ -2,6 +2,10 @@ import React, {useContext, useReducer} from 'react'
 import PagoContext from './pagoContext';
 import PagoReducer from './pagoReducer';
 
+import {
+    PAGOS_CLIENTE
+} from '../../types';
+
 const PagoState = props => {
     const initialState={
         pagos: [ 
@@ -15,10 +19,21 @@ const PagoState = props => {
     //Crear dispatch y state
     const [state, dispatch] = useReducer(PagoReducer, initialState);
 
+    //Funciones
+
+    //Obtener pagos de un cliente
+    const obtenerPagos = clienteId => {
+        dispatch({
+            type: PAGOS_CLIENTE,
+            payload: clienteId
+        })
+    }
+
     return(
         <PagoContext.Provider
             value={{
-               pagos: state.pagos
+               pagos: state.pagos,
+               obtenerPagos
             }}
         >
             {props.children}

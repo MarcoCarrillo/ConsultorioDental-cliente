@@ -1,5 +1,5 @@
 import {createContext} from 'react';
 
-const PagoContext = createContext();
+const pagoContext = createContext();
 
-export default PagoContext;
+export default pagoContext;
