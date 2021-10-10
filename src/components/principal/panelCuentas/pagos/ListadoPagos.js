@@ -12,12 +12,13 @@ const ListadoPagos = () => {
         <ul className="cargos-realizados p-4">
             {pagoscliente.length === 0 
                 ? (<li>
-                        <div class="alert alert-warning" role="alert">
+                        <div className="alert alert-warning" role="alert">
                             El cliente no tiene pagos!
                         </div>
                     </li>)
                 : pagoscliente.map(pago => (
                     <Pago
+                        key={pago.id}
                         pago={pago}
                     />
                 ))

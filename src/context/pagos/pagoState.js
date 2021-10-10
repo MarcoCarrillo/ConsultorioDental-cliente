@@ -6,15 +6,16 @@ import PagoReducer from './pagoReducer';
 import {
     PAGOS_CLIENTE,
     AGREGAR_PAGO,
-    VALIDAR_FORMULARIO_PAGO
+    VALIDAR_FORMULARIO_PAGO,
+    ELIMINAR_PAGO
 } from '../../types';
 
 const PagoState = props => {
     const initialState={
         pagos: [ 
-            {concepto: 'Primer mensualidad', cantidad: 500, fecha:'2021-10-19', clienteId: 1},
-            {concepto: 'Pago del diente', cantidad: 3000, fecha:'2021-10-20', clienteId: 2},
-            {concepto: 'Primer mensualidad id 3', cantidad: 500, fecha:'2021-10-19', clienteId: 3},
+            {id: 1,concepto: 'Primer mensualidad', cantidad: 500, fecha:'2021-10-19', clienteId: 1},
+            {id: 2,concepto: 'Pago del diente', cantidad: 3000, fecha:'2021-10-20', clienteId: 2},
+            {id: 3,concepto: 'Primer mensualidad id 3', cantidad: 500, fecha:'2021-10-19', clienteId: 3},
         ],
         pagoscliente: null,
         errorpago: false
@@ -49,6 +50,14 @@ const PagoState = props => {
         })
     }
 
+    //Elimina un pago
+    const eliminarPago = id =>{
+        dispatch({
+            type: ELIMINAR_PAGO,
+            payload: id
+        })
+    }
+
     return(
         <PagoContext.Provider
             value={{
@@ -57,7 +66,8 @@ const PagoState = props => {
                errorpago: state.errorpago,
                obtenerPagos,
                agregarPago,
-               validarPago
+               validarPago,
+               eliminarPago
             }}
         >
             {props.children}
