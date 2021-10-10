@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import clienteContext from '../../../../context/clientes/clienteContext';
 import pagoContext from '../../../../context/pagos/pagoContext';
 
@@ -10,10 +10,23 @@ const FormPago = () => {
 
     //Obtener los pagos del cliente
     const pagosContext = useContext(pagoContext);
-    const { errorpago, agregarPago, validarPago, obtenerPagos } = pagosContext;
+    const { pagoseleccionado, errorpago, agregarPago, validarPago, obtenerPagos } = pagosContext;
 
     //Array destructuring para extraer los datos del cliente
     const [clienteActual] = cliente;
+
+    //Effect para cuando se seleccione un pagos 
+    useEffect(() => {
+        if(pagoseleccionado !== null) {
+            guardarPago(pagoseleccionado);
+        } else {
+            guardarPago({
+                concepto: '',
+                cantidad: 0,
+                fecha: ''
+            });
+        }
+    }, [pagoseleccionado])
 
     //State
     const [pago, guardarPago] = useState({
@@ -77,7 +90,7 @@ const FormPago = () => {
                     <label htmlFor="fecha-pago" className="form-label">Cantidad</label>
                     <input type="date" className="form-control" id="fecha-pago" name='fecha' value={fecha} onChange={onChange}/>
                 </div>
-                <input type='submit' className="btn btn-success mb-5" value='Agregar pago' />
+                <input type='submit' className="btn btn-success mb-5" value={ pagoseleccionado ? 'Editar Pago' : 'Agregar Pago'} />
             </form>
             <div className="row">
                 <button

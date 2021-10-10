@@ -17,7 +17,8 @@ export default (state, action) => {
             return{
                 ...state,
                 pagos: [...state.pagos, action.payload],
-                errorpago: false
+                errorpago: false,
+                pagoseleccionado: null
             }
         case VALIDAR_FORMULARIO_PAGO:
             return{
