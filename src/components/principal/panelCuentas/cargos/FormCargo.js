@@ -10,7 +10,7 @@ const FormCargo = () => {
 
     //Obtener la funcion del context de cargos
     const cargosContext = useContext(cargoContext);
-    const { errorcargo, cargoseleccionado, agregarCargo, validarCargo, obtenerCargos } = cargosContext;    
+    const { errorcargo, cargoseleccionado, agregarCargo, validarCargo, obtenerCargos, actualizarCargo } = cargosContext;    
 
     //Effect que detecta cuando hay un cargo seleccionado
     useEffect(() => {
@@ -55,11 +55,17 @@ const FormCargo = () => {
             validarCargo();
             return;
         }
-        //Pasar la validacion
-
-        //Agregar el cargo al state de cargos
-        cargo.clienteId = clienteActual.id;
-        agregarCargo(cargo);
+        
+        //Revisar si es edicion o nuevo cargo
+        if(cargoseleccionado === null){
+            //Quiere decir que hay un cargo nuevo
+            //Agregar el cargo al state de cargos
+            cargo.clienteId = clienteActual.id;
+            agregarCargo(cargo);
+        } else {
+            //Actualizar cargo existente
+            actualizarCargo(cargo);
+        }
 
         //Obtener y filtrar los cargos del cliente actual
         obtenerCargos(clienteActual.id);

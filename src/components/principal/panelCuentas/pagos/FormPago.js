@@ -57,7 +57,7 @@ const FormPago = () => {
             <div className="row">
                 <button
                 type="button"
-                className="btn btn-danger m-auto mt-3"
+                className="btn btn-danger m-auto mt-3 mb-3"
                 onClick={() => eliminarCliente(clienteActual.id)}
                 >Eliminar Paciente &times;</button>
             </div>

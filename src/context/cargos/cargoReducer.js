@@ -3,7 +3,8 @@ import {
     AGREGAR_CARGO,
     VALIDAR_FORMULARIO_CARGO,
     ELIMINAR_CARGO,
-    CARGO_ACTUAL
+    CARGO_ACTUAL,
+    ACTUALIZAR_CARGO
 } from '../../types';
 
 export default (state, action) => {
@@ -33,6 +34,12 @@ export default (state, action) => {
             return{
                 ...state,
                 cargoseleccionado: action.payload
+            }
+        case ACTUALIZAR_CARGO:
+            return{
+                ...state,
+                cargos: state.cargos.map(cargo => cargo.id === action.payload.id ? action.payload : cargo),
+                cargoseleccionado: null
             }
 
         default:
