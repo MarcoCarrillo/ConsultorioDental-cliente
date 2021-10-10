@@ -6,7 +6,8 @@ import {
     CARGOS_CLIENTE,
     AGREGAR_CARGO,
     VALIDAR_FORMULARIO_CARGO,
-    ELIMINAR_CARGO
+    ELIMINAR_CARGO,
+    CARGO_ACTUAL
 } from '../../types';
 
 const CargoState = props => {
@@ -23,7 +24,8 @@ const CargoState = props => {
             {id: 9,concepto: 'Tratamiento', cantidad: 100, fecha:'2021-10-20', clienteId: 1}
         ],
         cargoscliente: null,
-        errorcargo: false
+        errorcargo: false,
+        cargoseleccionado: null
     }
 
     //Crear state y dispatch
@@ -63,16 +65,26 @@ const CargoState = props => {
         })
     }
 
+    //Extrae un cargo para editarlo
+    const guardarCargoActual = cargo => {
+        dispatch({
+            type: CARGO_ACTUAL,
+            payload: cargo
+        })
+    }
+
     return (
         <CargoContext.Provider
             value={{
                 cargos: state.cargos,
                 cargoscliente: state.cargoscliente,
                 errorcargo: state.errorcargo,
+                cargoseleccionado: state.cargoseleccionado,
                 obtenerCargos,
                 agregarCargo,
                 validarCargo,
-                eliminarCargo
+                eliminarCargo,
+                guardarCargoActual
             }}
         >
             {props.children}

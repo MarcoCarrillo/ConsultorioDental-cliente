@@ -10,7 +10,7 @@ const Cargo = ({cargo}) => {
 
     //Obtener los cargos del cliente
     const cargosContext = useContext(cargoContext);
-    const { eliminarCargo, obtenerCargos } = cargosContext;
+    const { eliminarCargo, obtenerCargos, guardarCargoActual } = cargosContext;
 
     //Extraer cliente actual
     const [ clienteActual ] = cliente;
@@ -21,6 +21,10 @@ const Cargo = ({cargo}) => {
         obtenerCargos(clienteActual.id);
     }
 
+    //Agrega un cargo actual cuando se quiera editar
+    const seleccionarCargo = cargo => {
+        guardarCargoActual(cargo);
+    }
 
     return ( 
         <li className="cargos mt-2">
@@ -29,7 +33,7 @@ const Cargo = ({cargo}) => {
             </p>
             <p>Fecha: {cargo.fecha}</p>
             <div className="acciones mt-2">
-                <button className="btn btn-warning mt-2">Editar</button>
+                <button className="btn btn-warning mt-2" onClick={() => seleccionarCargo(cargo)}>Editar</button>
                 <button className="btn btn-danger mt-2" onClick={ () => cargoEliminar(cargo.id) }>Eliminar</button>
             </div>
         </li>

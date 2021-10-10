@@ -2,7 +2,8 @@ import {
     CARGOS_CLIENTE,
     AGREGAR_CARGO,
     VALIDAR_FORMULARIO_CARGO,
-    ELIMINAR_CARGO
+    ELIMINAR_CARGO,
+    CARGO_ACTUAL
 } from '../../types';
 
 export default (state, action) => {
@@ -27,6 +28,11 @@ export default (state, action) => {
             return{
                 ...state,
                 cargos: state.cargos.filter(cargo => cargo.id !== action.payload)
+            }
+        case CARGO_ACTUAL:
+            return{
+                ...state,
+                cargoseleccionado: action.payload
             }
 
         default:
