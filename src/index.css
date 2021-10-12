@@ -204,6 +204,9 @@ ul {
   background-color: #fff;
   color: #004e92;
 }
+.bottom{
+  margin-bottom: 20px!important;
+}
 
 .app-header {
   display: flex;

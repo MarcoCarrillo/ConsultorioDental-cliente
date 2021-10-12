@@ -1,6 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react';
 import clienteContext from '../../../../context/clientes/clienteContext';
 import pagoContext from '../../../../context/pagos/pagoContext';
+import cargoContext from '../../../../context/cargos/cargoContext';
 
 const FormPago = () => {
 
@@ -10,7 +11,15 @@ const FormPago = () => {
 
     //Obtener los pagos del cliente
     const pagosContext = useContext(pagoContext);
-    const { pagoseleccionado, errorpago, agregarPago, validarPago, obtenerPagos, actualizarPago } = pagosContext;
+    const {pagoscliente, pagoseleccionado, errorpago, agregarPago, validarPago, obtenerPagos, actualizarPago } = pagosContext;
+
+    //Obtener los cargos del cliente
+    const cargosContext = useContext(cargoContext);
+    const { cargoscliente } = cargosContext;   
+
+    //Alerta 
+    const [alerta, mostrarAlerta] = useState(false);
+    const [cant, mostrarCantidad] = useState(false);
 
     //Effect para cuando se seleccione un pagos 
     useEffect(() => {
@@ -24,6 +33,25 @@ const FormPago = () => {
             });
         }
     }, [pagoseleccionado])
+
+    //Effect y operaciones para actualizar el total a deber
+    const totalCargos = (cargoscliente.reduce((sum, value) => ( parseInt(value.cantidad) ? parseInt(sum) + parseInt(value.cantidad) : parseInt(sum)), 0));
+
+    const totalPagos = (pagoscliente.reduce((sum, value) => ( parseInt(value.cantidad) ? parseInt(sum) + parseInt(value.cantidad) : parseInt(sum)),0));
+
+    const totalDeber = totalCargos - totalPagos;
+    
+
+    useEffect(() => {
+        console.log(totalDeber);
+        if(totalDeber < 1){
+            mostrarAlerta(false)
+        }else {
+            mostrarAlerta(true);
+        }
+        
+    }, [pagoscliente, cargoscliente])
+
 
     //State
     const [pago, guardarPago] = useState({
@@ -78,6 +106,7 @@ const FormPago = () => {
 
     return ( 
         <div className="form-container">
+            
             <h2 className='mb-4'>Agregar Pago</h2>
             <form
                 className='ml-4'
@@ -96,15 +125,19 @@ const FormPago = () => {
                     <label htmlFor="fecha-pago" className="form-label">Cantidad</label>
                     <input type="date" className="form-control" id="fecha-pago" name='fecha' value={fecha} onChange={onChange}/>
                 </div>
-                <input type='submit' className="btn btn-success mb-5" value={ pagoseleccionado ? 'Editar Pago' : 'Agregar Pago'} />
+                <input type='submit' className="btn btn-success mb-2" value={ pagoseleccionado ? 'Editar Pago' : 'Agregar Pago'} />
             </form>
+            <h2 className='mb-4'>Resumen</h2>
+            {alerta ? <div className="alert alert-info mb-4">El paciente debe un total de ${totalDeber}</div> : <div className="alert alert-info mb-4">El paciente adelantó ${totalDeber}</div>}
+
             <div className="row">
                 <button
                 type="button"
-                className="btn btn-danger m-auto mt-3 mb-3"
+                className="btn btn-danger m-auto bottom"
                 onClick={() => eliminarCliente(clienteActual.id)}
                 >Eliminar Paciente &times;</button>
             </div>
+            
         </div>
      );
 }

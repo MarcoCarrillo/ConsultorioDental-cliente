@@ -87,7 +87,7 @@ const FormCargo = () => {
                 className="ml-4"
                 onSubmit={onSubmit}
             >
-                {errorcargo ? <div class="alert alert-danger" role="alert">Hubo un error, intenta de nuevo.</div> :null}
+                {errorcargo ? <div className="alert alert-danger" role="alert">Hubo un error, intenta de nuevo.</div> :null}
                 <div className="mb-3">
                     <label htmlFor="concepto-cargo" className="form-label">Concepto de cargo</label>
                     <input type="text" className="form-control" id="concepto-cargo" placeholder="Ej. Diente nuevo" onChange={onChange} value={concepto} name='concepto' />
