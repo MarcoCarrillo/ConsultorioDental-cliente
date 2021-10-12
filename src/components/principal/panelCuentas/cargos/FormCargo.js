@@ -63,8 +63,15 @@ const FormCargo = () => {
             cargo.clienteId = clienteActual.id;
             agregarCargo(cargo);
         } else {
-            //Actualizar cargo existente
-            actualizarCargo(cargo);
+            //Validar
+            if(concepto.trim() === '' || parseInt(cantidad, 10) < 1 || cantidad.trim() === ''|| fecha.trim() === ''){
+                validarCargo();
+                return;
+            } else{
+                //Actualizar cargo existente
+                actualizarCargo(cargo);
+            }
+            
         }
 
         //Obtener y filtrar los cargos del cliente actual

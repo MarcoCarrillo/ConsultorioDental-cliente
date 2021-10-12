@@ -90,8 +90,15 @@ const FormPago = () => {
             pago.clienteId = clienteActual.id; 
             agregarPago(pago);
         } else{
-            //Editar
-            actualizarPago(pago);
+            //Validar
+            if(concepto.trim() === '' || parseInt(cantidad, 10) < 1 || cantidad.trim() === '' || fecha.trim() === ''){
+                validarPago();
+                return;
+            }else{
+                //Editar
+                actualizarPago(pago);
+            }
+            
         }
 
         //Obtener de nuevo los pagos del cliente

@@ -12,7 +12,8 @@ export default (state, action) => {
         case PAGOS_CLIENTE:
             return{
                 ...state,
-                pagoscliente: state.pagos.filter( pago => pago.clienteId === action.payload)
+                pagoscliente: state.pagos.filter( pago => pago.clienteId === action.payload),
+                errorpago: false
             }
         case AGREGAR_PAGO:
             return{
