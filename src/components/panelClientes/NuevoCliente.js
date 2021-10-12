@@ -1,4 +1,5 @@
 import React, {Fragment, useState, useContext} from 'react';
+import Swal from 'sweetalert2'
 
 import clienteContext from '../../context/clientes/clienteContext';
 
@@ -47,6 +48,13 @@ const NuevoCliente = () => {
         }
         //en caso de que este correcto agregar al State
         agregarCliente(cliente);
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'El paciente se agregó correctamente',
+            showConfirmButton: false,
+            timer: 1500
+          })
         //Reiniciar el form
         guardarCliente({
             nombre: '',
