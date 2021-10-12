@@ -5,7 +5,7 @@ import ListadoClientes from '../panelClientes/ListadoClientes';
 const Sidebar = () => {
     return ( 
         <aside className="sidebar">
-            <h2 className="alert alert-info">Cuentas por cobrar</h2>
+            <h2 className="alert alert-info mt-0">Cuentas por cobrar</h2>
             <img className="img-sidebar" src="logo-consult.png" alt="Logo"/>
 
             <NuevoCliente />
