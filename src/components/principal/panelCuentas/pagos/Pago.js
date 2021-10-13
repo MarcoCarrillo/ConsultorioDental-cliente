@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import pagoContext from '../../../../context/pagos/pagoContext';
 import clienteContext from '../../../../context/clientes/clienteContext';
+import Swal from 'sweetalert2';
 
 const Pago = ({pago}) => {
 
@@ -35,7 +36,27 @@ const Pago = ({pago}) => {
             <p>Fecha: {pago.fecha}</p>
             <div className="acciones mt-2">
                 <button className="btn btn-warning mt-2" onClick={() => seleccionarPago(pago)}>Editar</button>
-                <button className="btn btn-danger mt-2" onClick={() => pagoEliminar(pago.id)}>Eliminar</button>
+                <button className="btn btn-danger mt-2" onClick={() => 
+                    Swal.fire({
+                        title: '¿Estás seguro de eliminar el registro?',
+                        text: "Esta acción es irreversible!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        cancelButtonText: 'Cancelar',
+                        confirmButtonText: 'Sí, eliminalo!'
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          Swal.fire(
+                            'Eliminado!',
+                            'El pago se ha eliminado exitosamente.',
+                            'success'
+                          )
+                          pagoEliminar(pago.id)
+                        }
+                      })
+                    }>Eliminar</button>
             </div>
         </li>
      );

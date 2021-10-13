@@ -2,7 +2,7 @@ import React, {useState, useContext, useEffect} from 'react';
 import clienteContext from '../../../../context/clientes/clienteContext';
 import pagoContext from '../../../../context/pagos/pagoContext';
 import cargoContext from '../../../../context/cargos/cargoContext';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 const FormPago = () => {
 
@@ -80,7 +80,7 @@ const FormPago = () => {
         e.preventDefault();
 
         //Validar
-        if(concepto.trim() === '' || parseInt(cantidad, 10) < 1 || fecha.trim() === ''){
+        if(concepto.trim() === '' || parseInt(cantidad, 10) < 1 || cantidad === ''|| fecha.trim() === ''){
             validarPago();
             return;
         }
@@ -90,14 +90,28 @@ const FormPago = () => {
             //Agregar pago al state de pagos
             pago.clienteId = clienteActual.id; 
             agregarPago(pago);
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'El pago se registró correctamente.',
+                showConfirmButton: false,
+                timer: 1500
+              })
         } else{
             //Validar
-            if(concepto.trim() === '' || parseInt(cantidad, 10) < 1 || cantidad.trim() === '' || fecha.trim() === ''){
+            if(concepto.trim() === '' || parseInt(cantidad, 10) < 1 || cantidad === '' || fecha.trim() === ''){
                 validarPago();
                 return;
             }else{
                 //Editar
                 actualizarPago(pago);
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'El pago se actualizó correctamente.',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
             }
             
         }
@@ -136,7 +150,7 @@ const FormPago = () => {
                 <input type='submit' className="btn btn-success mb-2" value={ pagoseleccionado ? 'Editar Pago' : 'Agregar Pago'} />
             </form>
             <h2 className='mb-4'>Resumen</h2>
-            {alerta ? <div className="alert alert-info mb-4">El paciente debe un total de ${totalDeber}</div> : <div className="alert alert-info mb-4">El paciente adelantó ${totalDeber}</div>}
+            {alerta ? <div className="alert alert-info mb-4">El paciente debe un total de ${totalDeber}</div> : <div className="alert alert-info mb-4">El paciente adelantó ${- totalDeber}</div>}
 
             <div className="row">
                 <button
@@ -144,7 +158,7 @@ const FormPago = () => {
                 className="btn btn-danger m-auto bottom"
                 onClick={() => 
                     Swal.fire({
-                        title: '¿Estás seguro?',
+                        title: '¿Estás seguro de eliminar al paciente?',
                         text: "Esta acción es irreversible!",
                         icon: 'warning',
                         showCancelButton: true,
