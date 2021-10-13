@@ -1,6 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react';
 import clienteContext from '../../../../context/clientes/clienteContext';
 import cargoContext from '../../../../context/cargos/cargoContext';
+import Swal from 'sweetalert2';
 
 const FormCargo = () => {
 
@@ -51,7 +52,7 @@ const FormCargo = () => {
         e.preventDefault();
 
         //Validar
-        if(concepto.trim() === '' || parseInt(cantidad, 10) < 1 || fecha.trim() === ''){
+        if(concepto.trim() === '' || parseInt(cantidad, 10) < 1 || cantidad === '' || fecha.trim() === ''){
             validarCargo();
             return;
         }
@@ -62,14 +63,28 @@ const FormCargo = () => {
             //Agregar el cargo al state de cargos
             cargo.clienteId = clienteActual.id;
             agregarCargo(cargo);
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'El cargo se registró correctamente.',
+                showConfirmButton: false,
+                timer: 1500
+              })
         } else {
             //Validar
-            if(concepto.trim() === '' || parseInt(cantidad, 10) < 1 || cantidad.trim() === ''|| fecha.trim() === ''){
+            if(concepto.trim() === '' || parseInt(cantidad, 10) < 1 || cantidad === ''|| fecha.trim() === ''){
                 validarCargo();
                 return;
             } else{
                 //Actualizar cargo existente
                 actualizarCargo(cargo);
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'El cargo se actualizó correctamente.',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
             }
             
         }

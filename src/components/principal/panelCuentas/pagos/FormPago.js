@@ -45,8 +45,8 @@ const FormPago = () => {
 
     useEffect(() => {
         console.log(totalDeber);
-        if(totalDeber < 1){
-            mostrarAlerta(false)
+        if(totalDeber < 0){
+            mostrarAlerta(false);
         }else {
             mostrarAlerta(true);
         }
