@@ -41,7 +41,7 @@ const NuevoCliente = () => {
             return;
         }
 
-        if(parseInt(edad, 10) < 1 || parseInt(telefono, 10) < 1){
+        if(parseInt(edad, 10) < 1 && parseInt(edad, 10).length > 3 || parseInt(telefono, 10) < 111111111){
             // console.log('Edad invalida');
             mostrarError();
             return;
@@ -98,6 +98,7 @@ const NuevoCliente = () => {
                                     name='nombre'
                                     onChange={onChange}
                                     value={nombre}
+                                    required
                                 />
                             </div>
                             <div className="input-goup mb-3">
@@ -107,8 +108,11 @@ const NuevoCliente = () => {
                                     className="form-control" 
                                     placeholder="Edad del paciente" 
                                     name='edad'
+                                    min = '1'
+                                    max = '99'
                                     onChange={onChange}
                                     value={edad}
+                                    required
                                 />
                             </div>
                             <div className="input-goup mb-3">
@@ -120,6 +124,7 @@ const NuevoCliente = () => {
                                     name='telefono'
                                     onChange={onChange}
                                     value={telefono}
+                                    required
                                 />
                             </div>
                             <div className="input-goup mb-3">
@@ -131,6 +136,7 @@ const NuevoCliente = () => {
                                     name='tratamiento'
                                     onChange={onChange}
                                     value={tratamiento}
+                                    required
                                 />
                             </div>
                             
