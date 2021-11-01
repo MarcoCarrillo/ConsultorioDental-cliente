@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import AlertaContext from '../../context/alertas/alertaContext';
 
 const Registro = () => {
+
+    //Extraer valores del context 
+    const alertaContext = useContext(AlertaContext);
+    const {alerta, mostrarAlerta} = alertaContext;
 
     //State para iniciar sesion
     const [registro, guardarRegistro] = useState({
@@ -24,10 +30,21 @@ const Registro = () => {
         e.preventDefault();
 
         //Validar que no haya campos vacios
-
+        if( nombre.trim() === '' || admin.trim() === '' || password.trim() === '' || confirmar.trim() === '' ) {
+            mostrarAlerta('Todos los campos son obligatorios', 'danger');  
+            return;  
+        }
         //Que el password sea minimo de 6 caracteres
-
+        if(password.length < 6){
+            mostrarAlerta('El password debe de ser mínimo de 6 caracteres', 'warning'); 
+            return;
+        }
         //Revisar que los 2 passwords sean iguales
+        if( password !== confirmar ){
+            mostrarAlerta('Las contraseñas ingresadas no son iguales', 'warning');
+            return;
+        }
+
         //Pasarlo al action
     }
 
@@ -36,6 +53,7 @@ const Registro = () => {
             <div className="contenedor-form card">
                 <img className="card-image" src="logo-consult.png" alt="Logo"/>
 
+                {alerta ? (<div className={`alert alert-${alerta.categoria}`}>{alerta.msg}</div>)  : null}
                 <form
                     onSubmit={onSubmit}
                 >

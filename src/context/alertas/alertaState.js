@@ -21,6 +21,7 @@ const AlertaState = props =>{
             payload: {msg, categoria}
         });
 
+        //Ocultar la alerta despues de 3 segundos
         setTimeout(() =>{
             dispatch({
                 type: OCULTAR_ALERTA
