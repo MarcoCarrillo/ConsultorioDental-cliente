@@ -20,5 +20,10 @@ export const ELIMINAR_PAGO = 'ELIMINAR_PAGO';
 export const PAGO_ACTUAL = 'PAGO_ACTUAL';
 export const ACTUALIZAR_PAGO = 'ACTUALIZAR_PAGO';
 
+export const MOSTRAR_ALERTA = 'MOSTRAR_ALERTA';
+export const OCULTAR_ALERTA = 'OCULTAR_ALERTA';
+
+
+
 
 
