@@ -16,12 +16,12 @@ const Registro = () => {
     //State para iniciar sesion
     const [registro, guardarRegistro] = useState({
         nombre: '',
-        admin: '',
+        usuario: '',
         password: '',
         confirmar: ''
     });
 
-    const {nombre, admin, password, confirmar} = registro; 
+    const {nombre, usuario, password, confirmar} = registro; 
 
     const onChange = e => {
         guardarRegistro({
@@ -34,7 +34,7 @@ const Registro = () => {
         e.preventDefault();
 
         //Validar que no haya campos vacios
-        if( nombre.trim() === '' || admin.trim() === '' || password.trim() === '' || confirmar.trim() === '' ) {
+        if( nombre.trim() === '' || usuario.trim() === '' || password.trim() === '' || confirmar.trim() === '' ) {
             mostrarAlerta('Todos los campos son obligatorios', 'danger');  
             return;  
         }
@@ -52,7 +52,7 @@ const Registro = () => {
         //Pasarlo al action
         registrarUsuario({
             nombre,
-            admin, 
+            usuario, 
             password
         })
     }
@@ -79,15 +79,15 @@ const Registro = () => {
                         />
                     </div>
                     <div className="campo-form">
-                        <label htmlFor="admin">Usuario Administrador</label>
+                        <label htmlFor="usuario">Usuario Administrador</label>
                         <input
                             className="form-control"
                             type="text"
-                            id="admin"
-                            name="admin"
+                            id="usuario"
+                            name="usuario"
                             placeholder="Tu usuario para iniciar sesion"
                             onChange={onChange}
-                            value={admin}
+                            value={usuario}
                         />
                     </div>
                     <div className="campo-form">
