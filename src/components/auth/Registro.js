@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AlertaContext from '../../context/alertas/alertaContext';
+import AuthContext from '../../context/autenticacion/authContext';
 
 const Registro = () => {
 
     //Extraer valores del context 
     const alertaContext = useContext(AlertaContext);
     const {alerta, mostrarAlerta} = alertaContext;
+
+    const authContext = useContext(AuthContext);
+    const {registrarUsuario} = authContext;
 
     //State para iniciar sesion
     const [registro, guardarRegistro] = useState({
@@ -46,6 +50,11 @@ const Registro = () => {
         }
 
         //Pasarlo al action
+        registrarUsuario({
+            nombre,
+            admin, 
+            password
+        })
     }
 
     return ( 
