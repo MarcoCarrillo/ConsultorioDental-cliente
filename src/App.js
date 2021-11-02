@@ -8,6 +8,7 @@ import ClienteState from './context/clientes/clienteState';
 import CargoState from './context/cargos/cargoState';
 import PagoState from './context/pagos/pagoState';
 import AlertaState from './context/alertas/alertaState';
+import AuthState from './context/autenticacion/authState';
 
 function App() {
   return (
@@ -15,13 +16,15 @@ function App() {
       <CargoState>
         <PagoState>
           <AlertaState>
-            <Router>
-              <Switch>
-                <Route exact path="/" component={Login} />
-                <Route exact path="/registro" component={Registro} />
-                <Route exact path="/menu-principal" component={MenuPrincipal} />
-              </Switch>
-            </Router>
+            <AuthState>
+              <Router>
+                <Switch>
+                  <Route exact path="/" component={Login} />
+                  <Route exact path="/registro" component={Registro} />
+                  <Route exact path="/menu-principal" component={MenuPrincipal} />
+                </Switch>
+              </Router>
+            </AuthState> 
           </AlertaState>
         </PagoState>  
       </CargoState>

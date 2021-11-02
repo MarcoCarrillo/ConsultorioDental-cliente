@@ -144,7 +144,7 @@ const FormPago = () => {
                     <input type="number" className="form-control" id="cantidad-pago" placeholder='$1000' name='cantidad' value={cantidad} onChange={onChange}/>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="fecha-pago" className="form-label">Cantidad</label>
+                    <label htmlFor="fecha-pago" className="form-label">Fecha</label>
                     <input type="date" className="form-control" id="fecha-pago" name='fecha' value={fecha} onChange={onChange}/>
                 </div>
                 <input type='submit' className="btn btn-success mb-2" value={ pagoseleccionado ? 'Editar Pago' : 'Agregar Pago'} />
