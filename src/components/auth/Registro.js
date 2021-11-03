@@ -44,17 +44,17 @@ const Registro = (props) => {
 
         //Validar que no haya campos vacios
         if( nombre.trim() === '' || usuario.trim() === '' || password.trim() === '' || confirmar.trim() === '' ) {
-            mostrarAlerta('Todos los campos son obligatorios', 'danger');  
+            mostrarAlerta('Todos los campos son obligatorios.', 'danger');  
             return;  
         }
         //Que el password sea minimo de 6 caracteres
         if(password.length < 6){
-            mostrarAlerta('El password debe de ser mínimo de 6 caracteres', 'warning'); 
+            mostrarAlerta('El password debe de ser mínimo de 6 caracteres.', 'warning'); 
             return;
         }
         //Revisar que los 2 passwords sean iguales
         if( password !== confirmar ){
-            mostrarAlerta('Las contraseñas ingresadas no son iguales', 'warning');
+            mostrarAlerta('Las contraseñas ingresadas no son iguales.', 'warning');
             return;
         }
 
