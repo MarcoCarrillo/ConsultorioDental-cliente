@@ -35,6 +35,9 @@ h3{
   font-size: 1.5rem;
 }
 
+.wrap{
+  flex-wrap: wrap!important;
+}
 .back-color {
   background: #000428;  
   background: -webkit-linear-gradient(to right, #004e92, #000428);  

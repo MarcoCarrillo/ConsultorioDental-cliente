@@ -16,7 +16,7 @@ const BarraInfo = () => {
         <Fragment>
         
             <div className="container bg-cliente">
-                <div className="row justify-content-start">
+                <div className="row justify-content-start wrap">
                     <div className="col-md-auto text-center alinear">
                         <span className="icon">
                             <i className="far fa-user-circle"></i>

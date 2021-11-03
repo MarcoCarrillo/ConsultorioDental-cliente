@@ -24,7 +24,7 @@ const MenuPrincipal = () => {
                 <main>
                     <BarraInfo />
                         <div className="container">
-                            <div className="row">
+                            <div className="row wrap">
                                 <div className="col-sm-6">
                                     <PagosCargos />
                                 </div>
