@@ -14,7 +14,7 @@ const MenuPrincipal = () => {
 
     useEffect(() => {
         usuarioAutenticado();
-    }, [])
+    }, []);
 
     return ( 
         <div className="contenedor-app">
