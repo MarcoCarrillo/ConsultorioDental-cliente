@@ -1,19 +1,28 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { Link } from 'react-router-dom';
+import AlertaContext from '../../context/alertas/alertaContext';
+import AuthContext from '../../context/autenticacion/authContext';
 
 const Login = () => {
 
+    //Extraer valores del context 
+    const alertaContext = useContext(AlertaContext);
+    const {alerta, mostrarAlerta} = alertaContext;
+
+    const authContext = useContext(AuthContext);
+    const {mensaje, autenticado, iniciarSesion } = authContext;
+
     //State para iniciar sesion
-    const [usuario, guardarUsuario] = useState({
-        admin: '',
+    const [user, guardarUsuario] = useState({
+        usuario: '',
         password: ''
     });
 
-    const {admin, password} = usuario; 
+    const {usuario, password} = user; 
 
     const onChange = e => {
         guardarUsuario({
-            ...usuario,
+            ...user,
             [e.target.name] : e.target.value
         })
     }
@@ -22,8 +31,11 @@ const Login = () => {
         e.preventDefault();
 
         //Validar que no haya campos vacios
-
+        if(usuario.trim() === '' || password.trim() === ''){
+            mostrarAlerta('Todos los campos son obligatorios', 'danger')
+        }
         //Pasarlo al action
+        iniciarSesion({usuario, password});
     }
 
     return ( 
@@ -31,19 +43,20 @@ const Login = () => {
             <div className="contenedor-form card">
                 <img className="card-image" src="logo-consult.png" alt="Logo"/>
 
+                {alerta ? (<div className={`alert alert-${alerta.categoria}`}>{alerta.msg}</div>)  : null}
                 <form
                     onSubmit={onSubmit}
                 >
                     <div className="campo-form">
-                        <label htmlFor="admin">Usuario Administrador</label>
+                        <label htmlFor="usuario">Usuario Administrador</label>
                         <input
                             className="form-control"
                             type="text"
-                            id="admin"
-                            name="admin"
+                            id="usuario"
+                            name="usuario"
                             placeholder="Tu usuario administrador"
                             onChange={onChange}
-                            value={admin}
+                            value={usuario}
                         />
                     </div>
                     <div className="campo-form">
