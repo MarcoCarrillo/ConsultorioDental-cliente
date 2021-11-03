@@ -10,6 +10,7 @@ import PagoState from './context/pagos/pagoState';
 import AlertaState from './context/alertas/alertaState';
 import AuthState from './context/autenticacion/authState';
 import tokenAuth from './config/tokenAuth';
+import RutaPrivada from './components/rutas/RutaPrivada';
 
 //Revisar si hay un token 
 const token = localStorage.getItem('token');
@@ -28,7 +29,7 @@ function App() {
                 <Switch>
                   <Route exact path="/" component={Login} />
                   <Route exact path="/registro" component={Registro} />
-                  <Route exact path="/menu-principal" component={MenuPrincipal} />
+                  <RutaPrivada exact path="/menu-principal" component={MenuPrincipal} />
                 </Switch>
               </Router>
             </AuthState> 
