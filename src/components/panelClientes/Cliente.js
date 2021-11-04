@@ -30,7 +30,7 @@ const Cliente = ({cliente}) => {
             <button
                 type="button"
                 className="boton btn-blank"
-                onClick={ () => seleccionarCliente(cliente.id) }
+                onClick={ () => seleccionarCliente(cliente._id) }
             >{cliente.nombre}</button>
         </li>
      );
