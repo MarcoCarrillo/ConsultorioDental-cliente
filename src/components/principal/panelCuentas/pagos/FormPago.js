@@ -173,7 +173,7 @@ const FormPago = () => {
                             'El paciente se ha eliminado exitosamente.',
                             'success'
                           )
-                          eliminarCliente(clienteActual.id)
+                          eliminarCliente(clienteActual._id)
                         }
                       })
                     

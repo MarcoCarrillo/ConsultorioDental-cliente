@@ -48,7 +48,7 @@ export default (state, action) => {
         case ELIMINAR_CLIENTE:
             return{
                 ...state,
-                clientes: state.clientes.filter(cliente => cliente.id !== action.payload), //Traer los que no sean iguales,
+                clientes: state.clientes.filter(cliente => cliente._id !== action.payload), //Traer los que no sean iguales,
                 cliente: null
             }
         default: 

@@ -84,11 +84,16 @@ const ClienteState = props => {
     }
 
     //Elimina un cliente
-    const eliminarCliente = clienteId => {
-        dispatch({
-            type: ELIMINAR_CLIENTE,
-            payload: clienteId
-        })
+    const eliminarCliente = async clienteId => {
+        try {
+            await clienteAxios.delete(`/api/clientes/${clienteId}`);
+            dispatch({
+                type: ELIMINAR_CLIENTE,
+                payload: clienteId
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return(
