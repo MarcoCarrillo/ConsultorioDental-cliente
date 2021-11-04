@@ -28,6 +28,7 @@ export default (state, action) => {
                 errorformulario: true
             }
         case OBTENER_CLIENTES:
+            // console.log(action.payload);
             return{
                 ...state,
                 clientes: action.payload

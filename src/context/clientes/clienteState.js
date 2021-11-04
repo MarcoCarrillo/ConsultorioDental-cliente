@@ -17,12 +17,6 @@ import clienteAxios from '../../config/axios';
 
 const ClienteState = props => {
 
-    const clientes = [
-        {id:1, nombre: 'Memo Ochoa', edad: '30', telefono: '6181762612', tratamiento: 'Muelas picadas'},
-        {id:2, nombre: 'Leo Messi', edad: '50', telefono: '6181762611', tratamiento: 'Brackets'},
-        {id:3, nombre: 'Neymar', edad: '20', telefono: '6181762613', tratamiento: 'Muelas del juicio'}
-    ];
-
     const initialState = {
         clientes : [],
         formulario: false,
@@ -46,11 +40,17 @@ const ClienteState = props => {
     }
 
     //Obtener a los clientes
-    const obtenerClientes = () =>{
-        dispatch({
-            type: OBTENER_CLIENTES,
-            payload: clientes
-        })
+    const obtenerClientes = async () =>{
+        try {
+            const resultado = await clienteAxios.get('/api/clientes');
+            console.log(resultado);
+            dispatch({
+                type: OBTENER_CLIENTES,
+                payload: resultado.data.clientes
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     //Agregar un nuevo clientes 
