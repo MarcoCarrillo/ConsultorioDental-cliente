@@ -13,6 +13,7 @@ import {
     CLIENTE_ACTUAL,
     ELIMINAR_CLIENTE
 } from '../../types';
+import clienteAxios from '../../config/axios';
 
 const ClienteState = props => {
 
@@ -53,13 +54,18 @@ const ClienteState = props => {
     }
 
     //Agregar un nuevo clientes 
-    const agregarCliente = cliente =>{
-        cliente.id = uuidv4();
-        //Insertar el proyecto en el state de
-        dispatch({
-            type: AGREGAR_CLIENTE,
-            payload: cliente
-        })
+    const agregarCliente = async cliente =>{
+        try {
+            const resultado = await clienteAxios.post('/api/clientes', cliente);
+            console.log(resultado);
+            //Insertar el proyecto en el state de
+            dispatch({
+                type: AGREGAR_CLIENTE,
+                payload: resultado.data
+            });
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     //Validar formulario
