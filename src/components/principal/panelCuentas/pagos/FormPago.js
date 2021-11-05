@@ -20,7 +20,6 @@ const FormPago = () => {
 
     //Alerta 
     const [alerta, mostrarAlerta] = useState(false);
-    const [cant, mostrarCantidad] = useState(false);
 
     //Effect para cuando se seleccione un pagos 
     useEffect(() => {

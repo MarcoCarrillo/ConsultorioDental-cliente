@@ -10,6 +10,7 @@ import {
     VALIDAR_FORMULARIO_CLIENTE,
     OBTENER_CLIENTES,
     AGREGAR_CLIENTE,
+    CLIENTE_ERROR,
     CLIENTE_ACTUAL,
     ELIMINAR_CLIENTE
 } from '../../types';
@@ -21,7 +22,8 @@ const ClienteState = props => {
         clientes : [],
         formulario: false,
         errorformulario: false,
-        cliente: null
+        cliente: null,
+        mensaje: null
     }
 
     //Dispatch para ejecutar las acciones
@@ -49,7 +51,15 @@ const ClienteState = props => {
                 payload: resultado.data.clientes
             })
         } catch (error) {
-            console.log(error);
+            // console.log(error);
+            const alerta = {
+                msg: 'Hubo un error',
+                categoria: 'danger'
+            }
+            dispatch({
+                type: CLIENTE_ERROR,
+                payload: alerta
+            })
         }
     }
 
@@ -64,7 +74,15 @@ const ClienteState = props => {
                 payload: resultado.data
             });
         } catch (error) {
-            console.log(error);
+            // console.log(error);
+            const alerta = {
+                msg: 'Hubo un error',
+                categoria: 'danger'
+            }
+            dispatch({
+                type: CLIENTE_ERROR,
+                payload: alerta
+            })
         }
     }
 
@@ -92,7 +110,15 @@ const ClienteState = props => {
                 payload: clienteId
             })
         } catch (error) {
-            console.log(error);
+            // console.log(error);
+            const alerta = {
+                msg: 'Hubo un error',
+                categoria: 'danger'
+            }
+            dispatch({
+                type: CLIENTE_ERROR,
+                payload: alerta
+            })
         }
     }
 
@@ -103,6 +129,7 @@ const ClienteState = props => {
                 clientes: state.clientes,
                 errorformulario: state.errorformulario,
                 cliente: state.cliente,
+                mensaje: state.mensaje,
                 mostrarFormulario,
                 ocultarFormulario,
                 obtenerClientes,
