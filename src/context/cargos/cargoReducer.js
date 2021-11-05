@@ -12,13 +12,13 @@ export default (state, action) => {
         case CARGOS_CLIENTE:
             return{
                 ...state,
-                cargoscliente: state.cargos.filter(cargo => cargo.clienteId === action.payload),
+                cargoscliente: state.cargoscliente.filter(cargo => cargo.clienteId === action.payload),
                 errorcargo: false
             }
         case AGREGAR_CARGO:
             return{
                 ...state,
-                cargos: [...state.cargos, action.payload],
+                cargoscliente: [...state.cargoscliente, action.payload],
                 errorcargo: false
             }
         case VALIDAR_FORMULARIO_CARGO:
@@ -29,7 +29,7 @@ export default (state, action) => {
         case ELIMINAR_CARGO:
             return{
                 ...state,
-                cargos: state.cargos.filter(cargo => cargo.id !== action.payload)
+                cargoscliente: state.cargoscliente.filter(cargo => cargo.id !== action.payload)
             }
         case CARGO_ACTUAL:
             return{
@@ -39,7 +39,7 @@ export default (state, action) => {
         case ACTUALIZAR_CARGO:
             return{
                 ...state,
-                cargos: state.cargos.map(cargo => cargo.id === action.payload.id ? action.payload : cargo),
+                cargoscliente: state.cargoscliente.map(cargo => cargo.id === action.payload.id ? action.payload : cargo),
                 cargoseleccionado: null
             }
 

@@ -1,5 +1,4 @@
 import React, {useReducer} from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import CargoContext from './cargoContext';
 import CargoReducer from './cargoReducer';
 import {
@@ -11,14 +10,11 @@ import {
     ACTUALIZAR_CARGO
 } from '../../types';
 
+import clienteAxios from '../../config/axios';
+
 const CargoState = props => {
     const initialState = {
-        cargos: [
-            {id: 1,concepto: 'Anticipo', cantidad: 100, fecha:'2021-10-19', clienteId: 1},
-            {id: 2,concepto: 'Tratamiento dental', cantidad: 200, fecha:'2021-10-20', clienteId: 2},
-            {id: 3,concepto: 'Tratamiento', cantidad: 32000, fecha:'2021-10-20', clienteId: 3}
-        ],
-        cargoscliente: null,
+        cargoscliente: [],
         errorcargo: false,
         cargoseleccionado: null
     }
@@ -37,12 +33,18 @@ const CargoState = props => {
     }
 
     //Crear un nuevo cargo
-    const agregarCargo = cargo =>{
-        cargo.id = uuidv4();
-        dispatch({
-            type: AGREGAR_CARGO,
-            payload: cargo
-        })
+    const agregarCargo = async cargo =>{
+        console.log(cargo);
+        try {
+            const resultado = await clienteAxios.post('/api/cargos', cargo);
+            console.log(resultado);
+            dispatch({
+                type: AGREGAR_CARGO,
+                payload: cargo
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     //Valida y muestra un error en caso de que sea necesario 
@@ -79,7 +81,6 @@ const CargoState = props => {
     return (
         <CargoContext.Provider
             value={{
-                cargos: state.cargos,
                 cargoscliente: state.cargoscliente,
                 errorcargo: state.errorcargo,
                 cargoseleccionado: state.cargoseleccionado,

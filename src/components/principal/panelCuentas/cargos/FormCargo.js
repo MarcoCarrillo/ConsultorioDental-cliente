@@ -61,7 +61,7 @@ const FormCargo = () => {
         if(cargoseleccionado === null){
             //Quiere decir que hay un cargo nuevo
             //Agregar el cargo al state de cargos
-            cargo.clienteId = clienteActual.id;
+            cargo.cliente = clienteActual._id;
             agregarCargo(cargo);
             Swal.fire({
                 position: 'top-end',
