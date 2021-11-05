@@ -25,16 +25,23 @@ const CargoState = props => {
     //Funciones
 
     //Obtener los cargos de un cliente 
-    const obtenerCargos = clienteId => {
-        dispatch({
-            type: CARGOS_CLIENTE,
-            payload: clienteId
-        })
+    const obtenerCargos = async cliente => {
+        console.log(cliente);
+        try {
+            const resultado = await clienteAxios.get('/api/cargos', {params : { cliente }});
+            console.log(resultado);
+            dispatch({
+                type: CARGOS_CLIENTE,
+                payload: resultado.data.cargos
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     //Crear un nuevo cargo
     const agregarCargo = async cargo =>{
-        console.log(cargo);
+        // console.log(cargo);
         try {
             const resultado = await clienteAxios.post('/api/cargos', cargo);
             console.log(resultado);

@@ -12,7 +12,7 @@ export default (state, action) => {
         case CARGOS_CLIENTE:
             return{
                 ...state,
-                cargoscliente: state.cargoscliente.filter(cargo => cargo.clienteId === action.payload),
+                cargoscliente: action.payload,
                 errorcargo: false
             }
         case AGREGAR_CARGO:
