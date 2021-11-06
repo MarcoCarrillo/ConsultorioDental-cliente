@@ -29,7 +29,7 @@ export default (state, action) => {
         case ELIMINAR_CARGO:
             return{
                 ...state,
-                cargoscliente: state.cargoscliente.filter(cargo => cargo.id !== action.payload)
+                cargoscliente: state.cargoscliente.filter(cargo => cargo._id !== action.payload)
             }
         case CARGO_ACTUAL:
             return{

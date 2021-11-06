@@ -62,11 +62,16 @@ const CargoState = props => {
     }
 
     //Elimina un cargo por id
-    const eliminarCargo = id =>{
-        dispatch({
-           type: ELIMINAR_CARGO,
-           payload: id
-        })
+    const eliminarCargo = async (id, cliente) =>{
+        try {
+            await clienteAxios.delete(`/api/cargos/${id}`, { params: { cliente }});
+            dispatch({
+                type: ELIMINAR_CARGO,
+                payload: id
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     //Extrae un cargo para editarlo

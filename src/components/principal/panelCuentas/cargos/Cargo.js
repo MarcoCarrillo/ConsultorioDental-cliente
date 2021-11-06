@@ -18,7 +18,7 @@ const Cargo = ({cargo}) => {
 
     //Cuando el usuario da clic en eliminar
     const cargoEliminar = id => {
-        eliminarCargo(id);
+        eliminarCargo(id, clienteActual._id);
         obtenerCargos(clienteActual.id);
     }
 
@@ -52,7 +52,7 @@ const Cargo = ({cargo}) => {
                             'El cargo se ha eliminado exitosamente.',
                             'success'
                           )
-                          cargoEliminar(cargo.id)
+                          cargoEliminar(cargo._id)
                         }
                       })
                     }>Eliminar</button>
