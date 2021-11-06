@@ -48,7 +48,8 @@ const CargoState = props => {
             dispatch({
                 type: AGREGAR_CARGO,
                 payload: cargo
-            })
+            });
+
         } catch (error) {
             console.log(error);
         }
@@ -83,11 +84,18 @@ const CargoState = props => {
     }
 
     //Editar un cargo
-    const actualizarCargo = cargo => {
-        dispatch({
-            type: ACTUALIZAR_CARGO,
-            payload: cargo
-        })
+    const actualizarCargo = async cargo => {
+        // console.log(cargo);
+        try {
+            const resultado = await clienteAxios.put(`/api/cargos/${cargo._id}`, cargo);
+            console.log(resultado);
+            dispatch({
+                type: ACTUALIZAR_CARGO,
+                payload: resultado.data.cargo
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (

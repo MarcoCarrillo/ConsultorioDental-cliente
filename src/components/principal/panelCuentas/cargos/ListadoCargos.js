@@ -33,9 +33,9 @@ const ListadoCargos = () => {
                             El paciente no tiene cargos!
                         </div>
                     </li>)
-                : cargoscliente.map(cargo => (
+                : cargoscliente.map((cargo, index) => (
                     <Cargo
-                        key={cargo._id}
+                        key={index}
                         cargo={cargo}
                     />
                 ))

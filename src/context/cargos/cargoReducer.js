@@ -39,7 +39,7 @@ export default (state, action) => {
         case ACTUALIZAR_CARGO:
             return{
                 ...state,
-                cargoscliente: state.cargoscliente.map(cargo => cargo.id === action.payload.id ? action.payload : cargo),
+                cargoscliente: state.cargoscliente.map(cargo => cargo._id === action.payload._id ? action.payload : cargo),
                 cargoseleccionado: null
             }
 
