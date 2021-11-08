@@ -18,7 +18,7 @@ const Pago = ({pago}) => {
 
     //Funcion para cuando se presione eliminar
     const pagoEliminar = id =>{
-        eliminarPago(id);
+        eliminarPago(id, clienteActual._id);
         obtenerPagos(clienteActual.id);
     }
 
@@ -53,7 +53,7 @@ const Pago = ({pago}) => {
                             'El pago se ha eliminado exitosamente.',
                             'success'
                           )
-                          pagoEliminar(pago.id)
+                          pagoEliminar(pago._id)
                         }
                       })
                     }>Eliminar</button>

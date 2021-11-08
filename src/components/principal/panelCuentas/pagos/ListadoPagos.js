@@ -34,9 +34,9 @@ const ListadoPagos = () => {
                             El paciente no tiene pagos!
                         </div>
                     </li>)
-                : pagoscliente.map(pago => (
+                : pagoscliente.map((pago, index) => (
                     <Pago
-                        key={pago.id}
+                        key={index}
                         pago={pago}
                     />
                 ))

@@ -63,11 +63,16 @@ const PagoState = props => {
     }
 
     //Elimina un pago
-    const eliminarPago = id =>{
-        dispatch({
-            type: ELIMINAR_PAGO,
-            payload: id
-        })
+    const eliminarPago = async (id, cliente) =>{
+        try {
+            await clienteAxios.delete(`/api/pagos/${id}`, { params: { cliente }});
+            dispatch({
+                type: ELIMINAR_PAGO,
+                payload: id
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     //Extrae pago para edicion

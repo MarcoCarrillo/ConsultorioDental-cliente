@@ -30,7 +30,7 @@ export default (state, action) => {
         case ELIMINAR_PAGO:
             return{
                 ...state,
-                pagoscliente: state.pagoscliente.filter( pago => pago.id !== action.payload)
+                pagoscliente: state.pagoscliente.filter( pago => pago._id !== action.payload)
             }
         case PAGO_ACTUAL:
             return{

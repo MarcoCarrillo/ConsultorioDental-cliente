@@ -2,6 +2,7 @@ import React, {useState, useContext, useEffect} from 'react';
 import clienteContext from '../../../../context/clientes/clienteContext';
 import pagoContext from '../../../../context/pagos/pagoContext';
 import cargoContext from '../../../../context/cargos/cargoContext';
+import AlertaContext from '../../../../context/alertas/alertaContext';
 import Swal from 'sweetalert2';
 
 const FormPago = () => {
@@ -12,14 +13,17 @@ const FormPago = () => {
 
     //Obtener los pagos del cliente
     const pagosContext = useContext(pagoContext);
-    const {pagoscliente, pagoseleccionado, errorpago, agregarPago, validarPago, obtenerPagos, actualizarPago } = pagosContext;
+    const {pagoscliente, pagoseleccionado, agregarPago, obtenerPagos, actualizarPago } = pagosContext;
 
     //Obtener los cargos del cliente
     const cargosContext = useContext(cargoContext);
     const { cargoscliente } = cargosContext;   
 
     //Alerta 
-    const [alerta, mostrarAlerta] = useState(false);
+    const alertaContext = useContext(AlertaContext);
+    const {alerta, mostrarAlerta} = alertaContext;
+    
+    const [total, mostrarTotal] = useState(false);
 
     //Effect para cuando se seleccione un pagos 
     useEffect(() => {
@@ -45,9 +49,9 @@ const FormPago = () => {
     useEffect(() => {
         console.log(totalDeber);
         if(totalDeber < 0){
-            mostrarAlerta(false);
+            mostrarTotal(false);
         }else {
-            mostrarAlerta(true);
+            mostrarTotal(true);
         }
         
     }, [pagoscliente, cargoscliente])
@@ -79,11 +83,15 @@ const FormPago = () => {
         e.preventDefault();
 
         //Validar
-        if(concepto.trim() === '' || parseInt(cantidad, 10) < 1 || cantidad === ''|| fecha.trim() === ''){
-            validarPago();
+        if(concepto.trim() === '' || cantidad === ''|| fecha.trim() === ''){
+            mostrarAlerta('Todos los campos son obligatorios.', 'danger');
             return;
         }
 
+        if(parseInt(cantidad, 10) < 1){
+            mostrarAlerta('La cantidad debe ser mayor que 0.', 'danger');
+            return;
+        }
         //Ver si es edicion o pago nuevo
         if(pagoseleccionado === null){
             //Agregar pago al state de pagos
@@ -99,7 +107,8 @@ const FormPago = () => {
         } else{
             //Validar
             if(concepto.trim() === '' || parseInt(cantidad, 10) < 1 || cantidad === '' || fecha.trim() === ''){
-                validarPago();
+                setTimeout()
+                mostrarAlerta();
                 return;
             }else{
                 //Editar
@@ -133,7 +142,7 @@ const FormPago = () => {
                 className='ml-4'
                 onSubmit={onSubmit}
             >
-                 {errorpago ? <div class="alert alert-danger" role="alert">Hubo un error, intenta de nuevo.</div> :null}
+                 {alerta ? (<div className={`alert alert-${alerta.categoria}`}>{alerta.msg}</div>)  : null}
                 <div className="mb-3">
                     <label htmlFor="concepto-pago" className="form-label">Concepto de pago</label>
                     <input type="text" className="form-control" id="concepto-pago" placeholder='Ej. Primer mensualidad' name='concepto' value={concepto} onChange={onChange}/>
@@ -149,7 +158,7 @@ const FormPago = () => {
                 <input type='submit' className="btn btn-success mb-2" value={ pagoseleccionado ? 'Editar Pago' : 'Agregar Pago'} />
             </form>
             <h2 className='mb-4'>Resumen</h2>
-            {alerta ? <div className="alert alert-info mb-4">El paciente debe un total de ${totalDeber}</div> : <div className="alert alert-info mb-4">El paciente adelantó ${- totalDeber}</div>}
+            {total ? <div className="alert alert-info mb-4">El paciente debe un total de ${totalDeber}</div> : <div className="alert alert-info mb-4">El paciente adelantó ${- totalDeber}</div>}
 
             <div className="row">
                 <button
