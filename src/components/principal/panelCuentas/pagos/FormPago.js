@@ -87,7 +87,7 @@ const FormPago = () => {
         //Ver si es edicion o pago nuevo
         if(pagoseleccionado === null){
             //Agregar pago al state de pagos
-            pago.clienteId = clienteActual.id; 
+            pago.cliente = clienteActual._id; 
             agregarPago(pago);
             Swal.fire({
                 position: 'top-end',

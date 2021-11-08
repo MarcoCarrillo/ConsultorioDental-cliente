@@ -12,13 +12,13 @@ export default (state, action) => {
         case PAGOS_CLIENTE:
             return{
                 ...state,
-                pagoscliente: state.pagos.filter( pago => pago.clienteId === action.payload),
+                pagoscliente: state.pagoscliente.filter( pago => pago.clienteId === action.payload),
                 errorpago: false
             }
         case AGREGAR_PAGO:
             return{
                 ...state,
-                pagos: [...state.pagos, action.payload],
+                pagoscliente: [...state.pagoscliente, action.payload],
                 errorpago: false,
                 pagoseleccionado: null
             }
@@ -30,7 +30,7 @@ export default (state, action) => {
         case ELIMINAR_PAGO:
             return{
                 ...state,
-                pagos: state.pagos.filter( pago => pago.id !== action.payload)
+                pagoscliente: state.pagoscliente.filter( pago => pago.id !== action.payload)
             }
         case PAGO_ACTUAL:
             return{
@@ -40,7 +40,7 @@ export default (state, action) => {
         case ACTUALIZAR_PAGO:
             return{
                 ...state,
-                pagos: state.pagos.map(pago => pago.id === action.payload.id ? action.payload : pago),
+                pagoscliente: state.pagoscliente.map(pago => pago.id === action.payload.id ? action.payload : pago),
                 pagoseleccionado: null
             }
 
