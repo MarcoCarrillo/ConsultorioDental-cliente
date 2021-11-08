@@ -26,11 +26,18 @@ const PagoState = props => {
     //Funciones
 
     //Obtener pagos de un cliente
-    const obtenerPagos = clienteId => {
-        dispatch({
-            type: PAGOS_CLIENTE,
-            payload: clienteId
-        })
+    const obtenerPagos = async cliente => {
+        console.log(cliente);
+        try {
+            const resultado = await clienteAxios.get('/api/pagos', {params: { cliente }});
+            console.log(resultado);
+            dispatch({
+                type: PAGOS_CLIENTE,
+                payload: resultado.data.pagos
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     //Agregar un nuevo pago
