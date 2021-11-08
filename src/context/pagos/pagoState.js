@@ -84,11 +84,18 @@ const PagoState = props => {
     }
 
     //Actualizar pago
-    const actualizarPago = pago =>{
-        dispatch({
-            type: ACTUALIZAR_PAGO,
-            payload: pago
-        })
+    const actualizarPago = async pago =>{
+        console.log(pago);
+        try {
+            const resultado = await clienteAxios.put(`/api/pagos/${pago._id}`, pago);
+            console.log(resultado);
+            dispatch({
+                type: ACTUALIZAR_PAGO,
+                payload: resultado.data.pago
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return(

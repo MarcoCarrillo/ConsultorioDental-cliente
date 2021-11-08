@@ -40,7 +40,7 @@ export default (state, action) => {
         case ACTUALIZAR_PAGO:
             return{
                 ...state,
-                pagoscliente: state.pagoscliente.map(pago => pago.id === action.payload.id ? action.payload : pago),
+                pagoscliente: state.pagoscliente.map(pago => pago._id === action.payload._id ? action.payload : pago),
                 pagoseleccionado: null
             }
 
