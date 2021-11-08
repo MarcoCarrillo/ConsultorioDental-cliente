@@ -3,7 +3,8 @@ import {
     OCULTAR_FORMULARIO_CLIENTE,
     OBTENER_CLIENTES,
     AGREGAR_CLIENTE,
-    VALIDAR_FORMULARIO_CLIENTE,
+    MOSTRAR_ALERTA_CLIENTE,
+    OCULTAR_ALERTA_CLIENTE,
     CLIENTE_ACTUAL,
     ELIMINAR_CLIENTE,
     CLIENTE_ERROR
@@ -23,10 +24,15 @@ export default (state, action) => {
                 formulario: false,
                 errorformulario: false
             }
-        case VALIDAR_FORMULARIO_CLIENTE:
+        case MOSTRAR_ALERTA_CLIENTE:
             return{
                 ...state,
-                errorformulario: true
+                errorformulario: action.payload
+            }
+        case OCULTAR_ALERTA_CLIENTE:
+            return{
+                ...state,
+                errorformulario: false
             }
         case OBTENER_CLIENTES:
             // console.log(action.payload);

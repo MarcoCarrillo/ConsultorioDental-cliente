@@ -7,12 +7,13 @@ import clienteReducer from './clienteReducer';
 import { 
     MOSTRAR_FORMULARIO_CLIENTE,
     OCULTAR_FORMULARIO_CLIENTE,
-    VALIDAR_FORMULARIO_CLIENTE,
     OBTENER_CLIENTES,
     AGREGAR_CLIENTE,
     CLIENTE_ERROR,
     CLIENTE_ACTUAL,
-    ELIMINAR_CLIENTE
+    ELIMINAR_CLIENTE,
+    MOSTRAR_ALERTA_CLIENTE,
+    OCULTAR_ALERTA_CLIENTE
 } from '../../types';
 import clienteAxios from '../../config/axios';
 
@@ -87,11 +88,19 @@ const ClienteState = props => {
     }
 
     //Validar formulario
-    const mostrarError = () =>{
+    const mostrarError = (msg, categoria) =>{
         dispatch({
-            type: VALIDAR_FORMULARIO_CLIENTE
-        })
+            type: MOSTRAR_ALERTA_CLIENTE,
+            payload: {msg,categoria}
+        });
+        //Ocultar la alerta despues de 3 segundos
+        setTimeout(() =>{
+            dispatch({
+                type: OCULTAR_ALERTA_CLIENTE
+            });
+        }, 3000);
     }
+
 
     //Cliente actual
     const clienteActual = clienteId => {

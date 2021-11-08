@@ -37,14 +37,17 @@ const NuevoCliente = () => {
         //Validar el cliente
         if(nombre.trim() ==='' || telefono.trim()==='' || edad.trim()==='' || tratamiento.trim() === '') {
             // console.log('Campos incompletos');
-            mostrarError();
+            mostrarError('Todos los campos son obligatorios', 'danger');
             return;
         }
 
-        if(parseInt(edad, 10) < 1 && parseInt(edad, 10).length > 3 || parseInt(telefono, 10) < 111111111){
+        if(telefono.length <10 ){
             // console.log('Edad invalida');
-            mostrarError();
+            mostrarError('Debes ingresar un telefono de al menos 10 digitos.', 'warning');
             return;
+        }
+        if(parseInt(edad) < 1 || edad.leng > 3 ){
+            mostrarError('La edad debe de estar entre 1 y 100 años', 'warning');
         }
         //en caso de que este correcto agregar al State
         agregarCliente(cliente);
@@ -81,8 +84,7 @@ const NuevoCliente = () => {
                 className="btn btn-block btn-azul"
                 onClick={onClickForm}
             >Nuevo Paciente</button> 
-            {errorformulario ? <div className="mt-2 alert alert-danger" role="alert">Hubo un error!</div>
-                : null}
+            {errorformulario ? (<div className={`mt-3 alert alert-${errorformulario.categoria}`}>{errorformulario.msg}</div>)  : null}
             {formulario ?
                     (
                         <form
@@ -98,7 +100,6 @@ const NuevoCliente = () => {
                                     name='nombre'
                                     onChange={onChange}
                                     value={nombre}
-                                    required
                                 />
                             </div>
                             <div className="input-goup mb-3">
@@ -108,8 +109,8 @@ const NuevoCliente = () => {
                                     className="form-control" 
                                     placeholder="Edad del paciente" 
                                     name='edad'
-                                    min = '1'
-                                    max = '99'
+                                    max='100'
+                                    min='1'
                                     onChange={onChange}
                                     value={edad}
                                     required
@@ -136,7 +137,6 @@ const NuevoCliente = () => {
                                     name='tratamiento'
                                     onChange={onChange}
                                     value={tratamiento}
-                                    required
                                 />
                             </div>
                             
