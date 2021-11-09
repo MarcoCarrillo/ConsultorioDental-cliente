@@ -22,7 +22,8 @@ const ListadoPagos = () => {
             mostrarAlerta(true);
         }
         
-        console.log(total);
+        // console.log(total);
+        //eslint-disable-next-line 
     },[pagoscliente])
 
     return ( 

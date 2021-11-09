@@ -19,12 +19,13 @@ const Pago = ({pago}) => {
     //Funcion para cuando se presione eliminar
     const pagoEliminar = id =>{
         eliminarPago(id, clienteActual._id);
-        obtenerPagos(clienteActual.id);
+        obtenerPagos(clienteActual._id);
     }
 
     //Agrega un pago actual cuando se quiera editar
     const seleccionarPago = pago => {
         guardarPagoActual(pago);
+        obtenerPagos(clienteActual._id);
     }
 
 

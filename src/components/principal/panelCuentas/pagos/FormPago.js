@@ -47,13 +47,13 @@ const FormPago = () => {
     
 
     useEffect(() => {
-        console.log(totalDeber);
+        // console.log(totalDeber);
         if(totalDeber < 0){
             mostrarTotal(false);
         }else {
             mostrarTotal(true);
         }
-        
+        //eslint-disable-next-line 
     }, [pagoscliente, cargoscliente])
 
 

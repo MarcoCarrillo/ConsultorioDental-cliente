@@ -1,5 +1,4 @@
 import React, {useReducer} from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
 import clienteContext from './clienteContext';
 import clienteReducer from './clienteReducer';
@@ -46,7 +45,7 @@ const ClienteState = props => {
     const obtenerClientes = async () =>{
         try {
             const resultado = await clienteAxios.get('/api/clientes');
-            console.log(resultado);
+            // console.log(resultado);
             dispatch({
                 type: OBTENER_CLIENTES,
                 payload: resultado.data.clientes
@@ -68,7 +67,7 @@ const ClienteState = props => {
     const agregarCliente = async cliente =>{
         try {
             const resultado = await clienteAxios.post('/api/clientes', cliente);
-            console.log(resultado);
+            // console.log(resultado);
             //Insertar el proyecto en el state de
             dispatch({
                 type: AGREGAR_CLIENTE,

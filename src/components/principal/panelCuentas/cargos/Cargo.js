@@ -25,7 +25,7 @@ const Cargo = ({cargo}) => {
     //Agrega un cargo actual cuando se quiera editar
     const seleccionarCargo = cargo => {
         guardarCargoActual(cargo);
-        obtenerCargos(clienteActual.id);
+        obtenerCargos(clienteActual._id);
     }
 
     return ( 

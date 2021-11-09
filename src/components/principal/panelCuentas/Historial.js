@@ -12,8 +12,6 @@ const Historial = () => {
     //Si no hay cliente seleccionado
     if(!cliente) return null;
 
-    //Array destructuring para extraer los datos del cliente
-    const [clienteActual] = cliente;
 
     return ( 
         <Fragment>

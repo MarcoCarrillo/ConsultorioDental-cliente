@@ -19,7 +19,8 @@ const ListadoClientes = () => {
         if(mensaje) {
             mostrarAlerta(mensaje.msg, mensaje.categoria)
         }
-        obtenerClientes();        
+        obtenerClientes();   
+        //eslint-disable-next-line      
     }, [mensaje]);
 
     if(clientes.length === 0) return<div className="alert alert-info" role="alert">No hay pacientes, comienza agregando uno!</div>;

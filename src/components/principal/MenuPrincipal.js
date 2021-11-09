@@ -14,6 +14,7 @@ const MenuPrincipal = () => {
 
     useEffect(() => {
         usuarioAutenticado();
+        //eslint-disable-next-line 
     }, []);
 
     return ( 

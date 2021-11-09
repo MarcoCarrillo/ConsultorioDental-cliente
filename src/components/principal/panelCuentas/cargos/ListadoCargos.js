@@ -18,8 +18,9 @@ const ListadoCargos = () => {
         } else {
             mostrarAlerta(true);
         }
-        console.log(total);
-        console.log(cargoscliente);
+        // console.log(total);
+        // console.log(cargoscliente);
+        //eslint-disable-next-line 
     }, [cargoscliente]);
     
    

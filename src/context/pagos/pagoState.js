@@ -1,4 +1,4 @@
-import React, {useContext, useReducer} from 'react';
+import React, {useReducer} from 'react';
 import PagoContext from './pagoContext';
 import PagoReducer from './pagoReducer';
 
@@ -27,10 +27,10 @@ const PagoState = props => {
 
     //Obtener pagos de un cliente
     const obtenerPagos = async cliente => {
-        console.log(cliente);
+        // console.log(cliente);
         try {
             const resultado = await clienteAxios.get('/api/pagos', {params: { cliente }});
-            console.log(resultado);
+            // console.log(resultado);
             dispatch({
                 type: PAGOS_CLIENTE,
                 payload: resultado.data.pagos
@@ -42,7 +42,7 @@ const PagoState = props => {
 
     //Agregar un nuevo pago
     const agregarPago = async pago =>{
-        console.log(pago);
+        // console.log(pago);
         try {
             const resultado = await clienteAxios.post('/api/pagos', pago);
             console.log(resultado);
@@ -85,10 +85,10 @@ const PagoState = props => {
 
     //Actualizar pago
     const actualizarPago = async pago =>{
-        console.log(pago);
+        // console.log(pago);
         try {
             const resultado = await clienteAxios.put(`/api/pagos/${pago._id}`, pago);
-            console.log(resultado);
+            // console.log(resultado);
             dispatch({
                 type: ACTUALIZAR_PAGO,
                 payload: resultado.data.pago

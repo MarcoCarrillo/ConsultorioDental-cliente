@@ -26,10 +26,10 @@ const CargoState = props => {
 
     //Obtener los cargos de un cliente 
     const obtenerCargos = async cliente => {
-        console.log(cliente);
+        // console.log(cliente);
         try {
             const resultado = await clienteAxios.get('/api/cargos', {params : { cliente }});
-            console.log(resultado);
+            // console.log(resultado);
             dispatch({
                 type: CARGOS_CLIENTE,
                 payload: resultado.data.cargos
@@ -88,7 +88,7 @@ const CargoState = props => {
         // console.log(cargo);
         try {
             const resultado = await clienteAxios.put(`/api/cargos/${cargo._id}`, cargo);
-            console.log(resultado);
+            // console.log(resultado);
             dispatch({
                 type: ACTUALIZAR_CARGO,
                 payload: resultado.data.cargo
