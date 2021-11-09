@@ -2,7 +2,6 @@ import React, {useState, useContext, useEffect} from 'react';
 import clienteContext from '../../../../context/clientes/clienteContext';
 import pagoContext from '../../../../context/pagos/pagoContext';
 import cargoContext from '../../../../context/cargos/cargoContext';
-import AlertaContext from '../../../../context/alertas/alertaContext';
 import Swal from 'sweetalert2';
 
 const FormPago = () => {
@@ -13,15 +12,12 @@ const FormPago = () => {
 
     //Obtener los pagos del cliente
     const pagosContext = useContext(pagoContext);
-    const {pagoscliente, pagoseleccionado, agregarPago, obtenerPagos, actualizarPago } = pagosContext;
+    const {errorpago, pagoscliente, pagoseleccionado, validarPago, agregarPago, obtenerPagos, actualizarPago } = pagosContext;
 
     //Obtener los cargos del cliente
     const cargosContext = useContext(cargoContext);
     const { cargoscliente } = cargosContext;   
 
-    //Alerta 
-    const alertaContext = useContext(AlertaContext);
-    const {alerta, mostrarAlerta} = alertaContext;
     
     const [total, mostrarTotal] = useState(false);
 
@@ -84,12 +80,12 @@ const FormPago = () => {
 
         //Validar
         if(concepto.trim() === '' || cantidad === ''|| fecha.trim() === ''){
-            mostrarAlerta('Todos los campos son obligatorios.', 'danger');
+            validarPago('Todos los campos son obligatorios.', 'danger');
             return;
         }
 
         if(parseInt(cantidad, 10) < 1){
-            mostrarAlerta('La cantidad debe ser mayor que 0.', 'danger');
+            validarPago('La cantidad debe ser mayor que 0.', 'danger');
             return;
         }
         //Ver si es edicion o pago nuevo
@@ -107,8 +103,7 @@ const FormPago = () => {
         } else{
             //Validar
             if(concepto.trim() === '' || parseInt(cantidad, 10) < 1 || cantidad === '' || fecha.trim() === ''){
-                setTimeout()
-                mostrarAlerta();
+                validarPago();
                 return;
             }else{
                 //Editar
@@ -142,7 +137,7 @@ const FormPago = () => {
                 className='ml-4'
                 onSubmit={onSubmit}
             >
-                 {alerta ? (<div className={`alert alert-${alerta.categoria}`}>{alerta.msg}</div>)  : null}
+                 {errorpago ? (<div className={`mt-3 alert alert-${errorpago.categoria}`}>{errorpago.msg}</div>)  : null}
                 <div className="mb-3">
                     <label htmlFor="concepto-pago" className="form-label">Concepto de pago</label>
                     <input type="text" className="form-control" id="concepto-pago" placeholder='Ej. Primer mensualidad' name='concepto' value={concepto} onChange={onChange}/>

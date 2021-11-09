@@ -5,7 +5,8 @@ import PagoReducer from './pagoReducer';
 import {
     PAGOS_CLIENTE,
     AGREGAR_PAGO,
-    VALIDAR_FORMULARIO_PAGO,
+    MOSTRAR_ALERTA_PAGO,
+    OCULTAR_ALERTA_PAGO,
     ELIMINAR_PAGO,
     PAGO_ACTUAL,
     ACTUALIZAR_PAGO
@@ -56,10 +57,18 @@ const PagoState = props => {
     }
 
     //Valida y muestra error
-    const validarPago = () =>{
+    const validarPago = (msg, categoria) =>{
         dispatch({
-            type: VALIDAR_FORMULARIO_PAGO
+            type: MOSTRAR_ALERTA_PAGO,
+            payload: {msg, categoria}
         })
+
+        //Ocultar la alerta despues de 3 segundos
+        setTimeout(() =>{
+            dispatch({
+                type: OCULTAR_ALERTA_PAGO
+            });
+        }, 3000);
     }
 
     //Elimina un pago

@@ -1,7 +1,8 @@
 import {
     PAGOS_CLIENTE,
     AGREGAR_PAGO,
-    VALIDAR_FORMULARIO_PAGO,
+    MOSTRAR_ALERTA_PAGO,
+    OCULTAR_ALERTA_PAGO,
     ELIMINAR_PAGO,
     PAGO_ACTUAL,
     ACTUALIZAR_PAGO
@@ -23,10 +24,15 @@ export default (state, action) => {
                 errorpago: false,
                 pagoseleccionado: null
             }
-        case VALIDAR_FORMULARIO_PAGO:
+        case MOSTRAR_ALERTA_PAGO:
             return{
                 ...state,
-                errorpago: true
+                errorpago: action.payload
+            }
+        case OCULTAR_ALERTA_PAGO:
+            return{
+                ...state,
+                errorpago: false
             }
         case ELIMINAR_PAGO:
             return{
