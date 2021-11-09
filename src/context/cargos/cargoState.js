@@ -4,7 +4,8 @@ import CargoReducer from './cargoReducer';
 import {
     CARGOS_CLIENTE,
     AGREGAR_CARGO,
-    VALIDAR_FORMULARIO_CARGO,
+    MOSTRAR_ALERTA_CARGO,
+    OCULTAR_ALERTA_CARGO,
     ELIMINAR_CARGO,
     CARGO_ACTUAL,
     ACTUALIZAR_CARGO
@@ -56,10 +57,18 @@ const CargoState = props => {
     }
 
     //Valida y muestra un error en caso de que sea necesario 
-    const validarCargo = () =>{
+    const validarCargo = (msg, categoria) =>{
         dispatch({
-            type: VALIDAR_FORMULARIO_CARGO
-        })
+            type: MOSTRAR_ALERTA_CARGO,
+            payload: {msg, categoria}
+        });
+        //Ocultar la alerta despues de 3 segundos
+        setTimeout(() =>{
+            dispatch({
+                type: OCULTAR_ALERTA_CARGO
+            });
+        }, 3000);
+    
     }
 
     //Elimina un cargo por id

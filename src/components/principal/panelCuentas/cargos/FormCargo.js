@@ -52,8 +52,12 @@ const FormCargo = () => {
         e.preventDefault();
 
         //Validar
-        if(concepto.trim() === '' || parseInt(cantidad, 10) < 1 || cantidad === '' || fecha.trim() === ''){
-            validarCargo();
+        if(concepto.trim() === '' || cantidad === '' || fecha.trim() === ''){
+            validarCargo('Todos los campos son obligatorios.', 'danger');
+            return;
+        }
+        if(parseInt(cantidad, 10) < 1){
+            validarCargo('La cantidad debe ser mayor que 0.', 'danger');
             return;
         }
         
@@ -109,7 +113,7 @@ const FormCargo = () => {
                 className="ml-4"
                 onSubmit={onSubmit}
             >
-                {errorcargo ? <div className="alert alert-danger" role="alert">Hubo un error, intenta de nuevo.</div> :null}
+                {errorcargo ? (<div className={`mt-3 alert alert-${errorcargo.categoria}`}>{errorcargo.msg}</div>)  : null}
                 <div className="mb-3">
                     <label htmlFor="concepto-cargo" className="form-label">Concepto de cargo</label>
                     <input type="text" className="form-control" id="concepto-cargo" placeholder="Ej. Diente nuevo" onChange={onChange} value={concepto} name='concepto' />

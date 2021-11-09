@@ -1,7 +1,8 @@
 import {
     CARGOS_CLIENTE,
     AGREGAR_CARGO,
-    VALIDAR_FORMULARIO_CARGO,
+    MOSTRAR_ALERTA_CARGO,
+    OCULTAR_ALERTA_CARGO,
     ELIMINAR_CARGO,
     CARGO_ACTUAL,
     ACTUALIZAR_CARGO
@@ -22,10 +23,15 @@ export default (state, action) => {
                 cargoscliente: [...state.cargoscliente, action.payload],
                 errorcargo: false
             }
-        case VALIDAR_FORMULARIO_CARGO:
+        case MOSTRAR_ALERTA_CARGO:
             return{
                 ...state,
-                errorcargo: true
+                errorcargo: action.payload
+            }
+        case OCULTAR_ALERTA_CARGO:
+            return{
+                ...state,
+                errorcargo: false
             }
         case ELIMINAR_CARGO:
             return{
