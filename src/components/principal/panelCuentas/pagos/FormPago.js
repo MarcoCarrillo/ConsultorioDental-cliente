@@ -1,7 +1,6 @@
 import React, {useState, useContext, useEffect} from 'react';
 import clienteContext from '../../../../context/clientes/clienteContext';
 import pagoContext from '../../../../context/pagos/pagoContext';
-import cargoContext from '../../../../context/cargos/cargoContext';
 import Swal from 'sweetalert2';
 
 const FormPago = () => {
@@ -12,14 +11,7 @@ const FormPago = () => {
 
     //Obtener los pagos del cliente
     const pagosContext = useContext(pagoContext);
-    const {errorpago, pagoscliente, pagoseleccionado, validarPago, agregarPago, obtenerPagos, actualizarPago } = pagosContext;
-
-    //Obtener los cargos del cliente
-    const cargosContext = useContext(cargoContext);
-    const { cargoscliente } = cargosContext;   
-
-    
-    const [total, mostrarTotal] = useState(false);
+    const {errorpago, pagoseleccionado, validarPago, agregarPago, obtenerPagos, actualizarPago } = pagosContext;
 
     //Effect para cuando se seleccione un pagos 
     useEffect(() => {
@@ -33,25 +25,6 @@ const FormPago = () => {
             });
         }
     }, [pagoseleccionado])
-
-    //Effect y operaciones para actualizar el total a deber
-    const totalCargos = (cargoscliente.reduce((sum, value) => ( parseInt(value.cantidad) ? parseInt(sum) + parseInt(value.cantidad) : parseInt(sum)), 0));
-
-    const totalPagos = (pagoscliente.reduce((sum, value) => ( parseInt(value.cantidad) ? parseInt(sum) + parseInt(value.cantidad) : parseInt(sum)),0));
-
-    const totalDeber = totalCargos - totalPagos;
-    
-
-    useEffect(() => {
-        // console.log(totalDeber);
-        if(totalDeber < 0){
-            mostrarTotal(false);
-        }else {
-            mostrarTotal(true);
-        }
-        //eslint-disable-next-line 
-    }, [pagoscliente, cargoscliente])
-
 
     //State
     const [pago, guardarPago] = useState({
@@ -85,7 +58,7 @@ const FormPago = () => {
         }
 
         if(parseInt(cantidad, 10) < 1){
-            validarPago('La cantidad debe ser mayor que 0.', 'danger');
+            validarPago('La cantidad debe ser mayor a 0.', 'warning');
             return;
         }
         //Ver si es edicion o pago nuevo
@@ -150,10 +123,8 @@ const FormPago = () => {
                     <label htmlFor="fecha-pago" className="form-label">Fecha</label>
                     <input type="date" className="form-control" id="fecha-pago" name='fecha' value={fecha} onChange={onChange}/>
                 </div>
-                <input type='submit' className="btn btn-success mb-2" value={ pagoseleccionado ? 'Editar Pago' : 'Agregar Pago'} />
+                <input type='submit' className="btn btn-success mb-5" value={ pagoseleccionado ? 'Editar Pago' : 'Agregar Pago'} />
             </form>
-            <h2 className='mb-4'>Resumen</h2>
-            {total ? <div className="alert alert-info mb-4">El paciente debe un total de ${totalDeber}</div> : <div className="alert alert-info mb-4">El paciente adelantó ${- totalDeber}</div>}
 
             <div className="row">
                 <button

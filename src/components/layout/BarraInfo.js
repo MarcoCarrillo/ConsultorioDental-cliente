@@ -30,7 +30,7 @@ const BarraInfo = () => {
                             </div>
                             <div className="col align-self-center">
                                 <p>Edad: {clienteActual.edad}</p>
-                                <p>Telefono: {clienteActual.telefono}</p>
+                                <p>Teléfono: {clienteActual.telefono}</p>
                             </div>
                         </div>
                     </div>

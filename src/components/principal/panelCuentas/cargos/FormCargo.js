@@ -57,7 +57,7 @@ const FormCargo = () => {
             return;
         }
         if(parseInt(cantidad, 10) < 1){
-            validarCargo('La cantidad debe ser mayor que 0.', 'danger');
+            validarCargo('La cantidad debe ser mayor a 0.', 'warning');
             return;
         }
         
