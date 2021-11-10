@@ -1,5 +1,5 @@
 import React, {Fragment, useState, useContext} from 'react';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 import clienteContext from '../../context/clientes/clienteContext';
 
@@ -37,7 +37,14 @@ const NuevoCliente = () => {
         //Validar el cliente
         if(nombre.trim() ==='' || telefono.trim()==='' || edad.trim()==='' || tratamiento.trim() === '') {
             // console.log('Campos incompletos');
-            mostrarError('Todos los campos son obligatorios', 'danger');
+            mostrarError('Todos los campos son obligatorios.', 'danger');
+            return;
+        }
+
+        const edadInt = parseInt(edad, 10);
+        // console.log(edadInt);
+        if(edadInt < 1 || edadInt > 100 ){
+            mostrarError('La edad debe estar en el rango de 1 y 100 años.', 'warning');
             return;
         }
 
@@ -46,9 +53,7 @@ const NuevoCliente = () => {
             mostrarError('Debes ingresar un telefono de al menos 10 digitos.', 'warning');
             return;
         }
-        if(parseInt(edad) < 1 || edad.leng > 3 ){
-            mostrarError('La edad debe de estar entre 1 y 100 años', 'warning');
-        }
+        
         //en caso de que este correcto agregar al State
         agregarCliente(cliente);
         Swal.fire({
@@ -104,13 +109,12 @@ const NuevoCliente = () => {
                             </div>
                             <div className="input-goup mb-3">
                                 <input 
+                                    pattern="(1-99)"
                                     type="number"
                                     id="edad"
                                     className="form-control" 
                                     placeholder="Edad del paciente" 
                                     name='edad'
-                                    max='100'
-                                    min='1'
                                     onChange={onChange}
                                     value={edad}
                                     required
