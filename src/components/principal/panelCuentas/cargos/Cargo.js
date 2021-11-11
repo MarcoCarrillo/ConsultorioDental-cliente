@@ -19,7 +19,7 @@ const Cargo = ({cargo}) => {
     //Cuando el usuario da clic en eliminar
     const cargoEliminar = id => {
         eliminarCargo(id, clienteActual._id);
-        obtenerCargos(clienteActual.id);
+        obtenerCargos(clienteActual._id);
     }
 
     //Agrega un cargo actual cuando se quiera editar
